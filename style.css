@@ -1,6 +1,9 @@
+*{ touch-action: none; } 
+
 #target a:hover .st0{
   fill: #f39c12;
 }
+
 .st0{fill-rule:evenodd;clip-rule:evenodd;fill:#CCCCCC;}
 #target a:focus .st0{
   fill: #f39c12;
