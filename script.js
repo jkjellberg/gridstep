@@ -3,7 +3,7 @@ let inputs = document.querySelectorAll(".st0")
 // for every shape
 inputs.forEach(i =>{
   //when the shape is clicked
-  i.addEventListener("click", ()=>{
+  i.addEventListener("ontouchmove", ()=>{
    // toggle the class checked on the clicked one
    i.classList.toggle("checked")
 })
