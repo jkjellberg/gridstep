@@ -1,8 +1,8 @@
-// selects all the circles with a class of radio
+// selects all the shapes with a class st0
 let inputs = document.querySelectorAll(".st0")
-// for every circle
+// for every shape
 inputs.forEach(i =>{
-  //when the circle is clicked
+  //when the shape is clicked
   i.addEventListener("click", ()=>{
    // toggle the class checked on the clicked one
    i.classList.toggle("checked")
