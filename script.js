@@ -6,33 +6,38 @@ document.documentElement.addEventListener("mousedown", () => {
 // an array of instruments and their steps needs to be the same as the amount of divs with class instrument_switcher
 const instruments = [
   {
-    synth: new Tone.Synth().toMaster(),
+    synth: new Tone.Synth(),
     note: "c2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Synth().toMaster(),
+    synth: new Tone.Synth(),
     note: "g2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Synth().toMaster(),
+    synth: new Tone.Synth(),
     note: "c4",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Synth().toMaster(),
+    synth: new Tone.Synth(),
     note: "d#4",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Synth().toMaster(),
+    synth: new Tone.Synth(),
     note: "g5",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
 ];
 
 let active_instrument_index = 0;
+
+const gain = new Tone.Gain(0.6);
+gain.toMaster();
+
+instruments.forEach((instrument) => instrument.synth.connect(gain));
 
 //selects all instrument switcher buttons
 const instr_buttons = document.querySelectorAll(".instrument_switcher");
