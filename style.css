@@ -21,7 +21,7 @@
 
 .checked{fill:#f39c12}
 
-.active{fill:red}
+.active_step{fill:red}
 
 body {
   padding: 20px;
@@ -29,4 +29,8 @@ body {
 
 html {
     overflow-y: hidden;
+}
+
+div{
+  background-color: red;
 }
