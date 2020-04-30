@@ -3,19 +3,7 @@ document.documentElement.addEventListener("mousedown", () => {
   if (Tone.context.state !== "running") Tone.context.resume();
 });
 
-// selects all the shapes with a class st0
-//const trigs = document.querySelectorAll(".st0");
-// for every shape
-//trigs.forEach(i =>{
-//when the shape is clicked
-//i.addEventListener("click", ()=>{
-// toggle the class checked on the clicked one
-//i.classList.toggle("checked");
-//play a middle 'C' for the duration of an 8th note
-//var synth = new Tone.Synth().toMaster();
-//synth.triggerAttackRelease('C4', '8n');
-//})
-//})
+// an array of instruments and their steps needs to be the same as the amount of divs with class instrument_switcher
 const instruments = [
   {
     synth: new Tone.Synth().toMaster(),
@@ -37,11 +25,16 @@ const instruments = [
     note: "d#4",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
+  {
+    synth: new Tone.Synth().toMaster(),
+    note: "g5",
+    steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
 ];
 
 let active_instrument_index = 0;
 
-//selects all instrument buttons
+//selects all instrument switcher buttons
 const instr_buttons = document.querySelectorAll(".instrument_switcher");
 
 // selects all shapes with class st0 (all the steps)
@@ -50,9 +43,14 @@ const trigs = document.querySelectorAll(".st0");
 //add event listener to all instrument buttons
 instr_buttons.forEach((item, i) => {
   item.addEventListener("click", (e) => {
+    //removes the class active from the previous active instrument
     instr_buttons[active_instrument_index].classList.remove("active");
+
+    //sets the class active on the active instrument
     item.classList.toggle("active");
     active_instrument_index = i;
+
+    //repaints the trigs to match the active instruments
     trigs.forEach((trig, j) => {
       trig.classList.remove("checked");
       if (instruments[active_instrument_index].steps[j])
@@ -90,14 +88,11 @@ trigs.forEach((trig, i) => {
   //});
 });
 
-//Creates new synth and sends it to master
-const synth = new Tone.Synth().toMaster();
-
 // variables for the stepsequencer
 let index = 0;
 let previous_step = 0;
 
-// Initialize the time, will call function repeat each 16ths note. 120 bpm atm.
+// Initialize the time, will call function 'repeat' each 16ths note. 120 bpm by default.
 Tone.Transport.scheduleRepeat(repeat, "16n");
 //Start the function above
 Tone.Transport.start();
