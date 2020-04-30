@@ -1,11 +1,17 @@
-*{ touch-action: none; }
+* {
+  touch-action: none;
+}
 
-.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#CCCCCC;}
-#target a:focus .st0{
+.st0 {
+  fill-rule: evenodd;
+  clip-rule: evenodd;
+  fill: #cccccc;
+}
+#target a:focus .st0 {
   fill: #f39c12;
 }
 
-#target a:active .st0{
+#target a:active .st0 {
   fill: #f0932b;
 }
 
@@ -15,14 +21,31 @@
   stroke-width: 2;
 }
 
-.checked{fill:#f39c12}
+.checked {
+  fill: #f39c12;
+}
 
-.active_step{fill:red}
+.active_step {
+  fill: red;
+}
 
 body {
   padding: 20px;
 }
 
 html {
-    overflow-y: hidden;
+  overflow-y: hidden;
+}
+
+.instrument_switcher {
+  background-color: #f39c12;
+  height: 50px;
+  width: 50px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  float: left;
+  opacity: 0.5;
+}
+.instrument_switcher.active {
+  opacity: 1;
 }

@@ -16,16 +16,58 @@ document.documentElement.addEventListener("mousedown", () => {
 //synth.triggerAttackRelease('C4', '8n');
 //})
 //})
+const instruments = [
+  {
+    synth: new Tone.Synth().toMaster(),
+    note: "c2",
+    steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    synth: new Tone.Synth().toMaster(),
+    note: "g2",
+    steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    synth: new Tone.Synth().toMaster(),
+    note: "c4",
+    steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    synth: new Tone.Synth().toMaster(),
+    note: "d#4",
+    steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+];
+
+let active_instrument_index = 0;
+
+//selects all instrument buttons
+const instr_buttons = document.querySelectorAll(".instrument_switcher");
+
+// selects all shapes with class st0 (all the steps)
+const trigs = document.querySelectorAll(".st0");
+
+//add event listener to all instrument buttons
+instr_buttons.forEach((item, i) => {
+  item.addEventListener("click", (e) => {
+    instr_buttons[active_instrument_index].classList.remove("active");
+    item.classList.toggle("active");
+    active_instrument_index = i;
+    trigs.forEach((trig, j) => {
+      trig.classList.remove("checked");
+      if (instruments[active_instrument_index].steps[j])
+        trig.classList.toggle("checked");
+    });
+  });
+});
 
 //Lets the user start the 'swipe' outside of the grid as long as they start it in the body
 document.body.addEventListener("pointerdown", (e) => {
   document.body.releasePointerCapture(e.pointerId); //
 });
 
-// selects all shapes with class st0 (all the steps)
-const trigs = document.querySelectorAll(".st0");
-
-trigs.forEach((trig) => {
+// adds eventlisteners to all steps
+trigs.forEach((trig, i) => {
   //adds a pointer down listerner to each step to be able to release the target
   trig.addEventListener("pointerdown", (e) => {
     //console.log("down");
@@ -38,11 +80,14 @@ trigs.forEach((trig) => {
     //console.log("enter");
     // add the class checked if mouse/fingers enters shape (doesn't care if mouse is down atm...)
     trig.classList.toggle("checked");
+    instruments[active_instrument_index].steps[i] = !instruments[
+      active_instrument_index
+    ].steps[i];
   });
   // we don't need this at the moment, but adds a listener for when the finger/pointer leaves the shape
-  trig.addEventListener("pointerleave", (e) => {
-    //console.log("leave");
-  });
+  //trig.addEventListener("pointerleave", (e) => {
+  //console.log("leave");
+  //});
 });
 
 //Creates new synth and sends it to master
@@ -65,9 +110,11 @@ function repeat(time) {
   trigs[previous_step].classList.remove("active_step");
   trigs[step].classList.toggle("active_step");
 
-  // if the active step is cheked a note will be played.
-  if (trigs[step].classList.contains("checked"))
-    synth.triggerAttackRelease("g2", "16n", time);
+  instruments.forEach((instrument) => {
+    // if the active step is cheked a note will be played.
+    if (instrument.steps[step])
+      instrument.synth.triggerAttackRelease(instrument.note, "16n", time);
+  });
 
   previous_step = step;
   index++;
