@@ -3,9 +3,8 @@ document.documentElement.addEventListener("mousedown", () => {
   if (Tone.context.state !== "running") Tone.context.resume();
 });
 
-
-
-var sample_url = "https://raw.githubusercontent.com/jkjellberg/gridstep/samples/samples/";
+var sample_url =
+  "https://raw.githubusercontent.com/jkjellberg/gridstep/samples/samples/";
 // an array of instruments, needs to be the same as the amount of divs with class instrument_switcher
 const instruments = [
   {
@@ -40,7 +39,6 @@ let active_instrument_index = 0;
 const gain = new Tone.Gain(0.6);
 gain.toMaster();
 
-
 instruments.forEach((instrument) => instrument.synth.connect(gain));
 
 //selects all instrument switcher buttons
@@ -48,6 +46,16 @@ const instr_buttons = document.querySelectorAll(".instrument_switcher");
 
 // selects all shapes with class st0 (all the steps)
 const trigs = document.querySelectorAll(".st0");
+
+//Connect the bpm slider
+var bpm_slider = document.getElementById("bpm_slider"),
+  bpm_amount = document.getElementById("bpm_amount");
+
+//Function for bpm_slider
+bpm_slider.oninput = function () {
+  bpm_amount.innerHTML = this.value + " BPM";
+  Tone.Transport.bpm.value = this.value;
+};
 
 //add event listener to all instrument buttons
 instr_buttons.forEach((item, i) => {
@@ -116,9 +124,7 @@ function repeat(time) {
 
   instruments.forEach((instrument) => {
     // if the active step is cheked a note will be played.
-    if (instrument.steps[step])
-
-      instrument.synth.start(time, 0, "16n", 0);
+    if (instrument.steps[step]) instrument.synth.start(time, 0, "16n", 0);
   });
 
   previous_step = step;
