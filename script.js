@@ -3,41 +3,33 @@ document.documentElement.addEventListener("mousedown", () => {
   if (Tone.context.state !== "running") Tone.context.resume();
 });
 
-// an array of instruments and their steps needs to be the same as the amount of divs with class instrument_switcher
+
+
+var sample_url = "https://raw.githubusercontent.com/jkjellberg/gridstep/samples/samples/";
+// an array of instruments, needs to be the same as the amount of divs with class instrument_switcher
 const instruments = [
   {
-    synth: new Tone.Sampler(
-      {
-        C3: "path/to/C3.mp3",
-        "D#3": "path/to/Dsharp3.mp3",
-        "F#3": "path/to/Fsharp3.mp3",
-        A3: "path/to/A3.mp3",
-      },
-      function () {
-        //sampler will repitch the closest sample
-        sampler.triggerAttack("D3");
-      }
-    ),
+    synth: new Tone.Player(sample_url + "kick-606.wav"),
     note: "c2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Synth(),
+    synth: new Tone.Player(sample_url + "kick-606.wav"),
     note: "g2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Synth(),
+    synth: new Tone.Player(sample_url + "kick-606.wav"),
     note: "c4",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Synth(),
+    synth: new Tone.Player(sample_url + "kick-606.wav"),
     note: "d#4",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Synth(),
+    synth: new Tone.Player(sample_url + "kick-606.wav"),
     note: "g5",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
@@ -47,6 +39,7 @@ let active_instrument_index = 0;
 
 const gain = new Tone.Gain(0.6);
 gain.toMaster();
+
 
 instruments.forEach((instrument) => instrument.synth.connect(gain));
 
@@ -124,7 +117,8 @@ function repeat(time) {
   instruments.forEach((instrument) => {
     // if the active step is cheked a note will be played.
     if (instrument.steps[step])
-      instrument.synth.triggerAttackRelease(instrument.note, "16n", time);
+
+      instrument.synth.start(time, 0, "16n", 0);
   });
 
   previous_step = step;
