@@ -6,7 +6,15 @@
   fill-rule: evenodd;
   clip-rule: evenodd;
   fill: #cccccc;
+  opacity: 0.5;
+  mix-blend-mode: darken;
 }
+.step_indicator {
+  fill: #cccccc;
+  opacity: 0.5;
+  mix-blend-mode: darken;
+}
+
 #target a:focus .st0 {
   fill: #f39c12;
 }
@@ -23,10 +31,12 @@
 
 .checked {
   fill: #f39c12;
+  opacity: 0.5;
 }
 
 .active_step {
   fill: #e74c3c;
+  opacity: 1;
 }
 
 body {
