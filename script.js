@@ -3,30 +3,32 @@ document.documentElement.addEventListener("mousedown", () => {
   if (Tone.context.state !== "running") Tone.context.resume();
 });
 
-// an array of instruments and their steps needs to be the same as the amount of divs with class instrument_switcher
+var sample_url =
+  "https://raw.githubusercontent.com/jkjellberg/gridstep/samples/samples/";
+// an array of instruments, needs to be the same as the amount of divs with class instrument_switcher
 const instruments = [
   {
-    synth: new Tone.Synth(),
+    synth: new Tone.Player(sample_url + "kick-esm-iconic.wav"),
     note: "c2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Synth(),
+    synth: new Tone.Player(sample_url + "kick-606.wav"),
     note: "g2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Synth(),
+    synth: new Tone.Player(sample_url + "kick-606.wav"),
     note: "c4",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Synth(),
+    synth: new Tone.Player(sample_url + "kick-606.wav"),
     note: "d#4",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Synth(),
+    synth: new Tone.Player(sample_url + "kick-606.wav"),
     note: "g5",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
@@ -45,8 +47,20 @@ const instr_buttons = document.querySelectorAll(".instrument_switcher");
 // selects all shapes with class st0 (all the steps)
 const trigs = document.querySelectorAll(".st0");
 
+
 // selects all shapes with class st0 (all the steps)
 const step_indicator = document.querySelectorAll(".step_indicator");
+
+//Connect the bpm slider
+var bpm_slider = document.getElementById("bpm_slider"),
+  bpm_amount = document.getElementById("bpm_amount");
+
+//Function for bpm_slider
+bpm_slider.oninput = function () {
+  bpm_amount.innerHTML = this.value + " BPM";
+  Tone.Transport.bpm.value = this.value;
+};
+
 
 //add event listener to all instrument buttons
 instr_buttons.forEach((item, i) => {
@@ -116,8 +130,7 @@ function repeat(time) {
 
   instruments.forEach((instrument) => {
     // if the active step is cheked a note will be played.
-    if (instrument.steps[step])
-      instrument.synth.triggerAttackRelease(instrument.note, "16n", time);
+    if (instrument.steps[step]) instrument.synth.start(time, 0, "16n", 0);
   });
 
   previous_step = step;

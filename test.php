@@ -1,2 +1,1 @@
-Hej
-hej 
+hello.hello();
