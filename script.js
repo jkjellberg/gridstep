@@ -47,6 +47,10 @@ const instr_buttons = document.querySelectorAll(".instrument_switcher");
 // selects all shapes with class st0 (all the steps)
 const trigs = document.querySelectorAll(".st0");
 
+
+// selects all shapes with class st0 (all the steps)
+const step_indicator = document.querySelectorAll(".step_indicator");
+
 //Connect the bpm slider
 var bpm_slider = document.getElementById("bpm_slider"),
   bpm_amount = document.getElementById("bpm_amount");
@@ -56,6 +60,7 @@ bpm_slider.oninput = function () {
   bpm_amount.innerHTML = this.value + " BPM";
   Tone.Transport.bpm.value = this.value;
 };
+
 
 //add event listener to all instrument buttons
 instr_buttons.forEach((item, i) => {
@@ -95,6 +100,7 @@ trigs.forEach((trig, i) => {
     //console.log("enter");
     // add the class checked if mouse/fingers enters shape (doesn't care if mouse is down atm...)
     trig.classList.toggle("checked");
+    step_indicator[i].classList.toggle("checked");
     instruments[active_instrument_index].steps[i] = !instruments[
       active_instrument_index
     ].steps[i];
@@ -119,8 +125,8 @@ function repeat(time) {
   let step = index % 16;
 
   // remove the class active_step from the previous step and adds it to the active step
-  trigs[previous_step].classList.remove("active_step");
-  trigs[step].classList.toggle("active_step");
+  step_indicator[previous_step].classList.remove("active_step");
+  step_indicator[step].classList.toggle("active_step");
 
   instruments.forEach((instrument) => {
     // if the active step is cheked a note will be played.

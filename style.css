@@ -12,6 +12,13 @@
   fill-rule: evenodd;
   clip-rule: evenodd;
   fill: #cccccc;
+  opacity: 0.5;
+  mix-blend-mode: darken;
+}
+.step_indicator {
+  fill: #cccccc;
+  opacity: 0.5;
+  mix-blend-mode: darken;
 }
 
 .slider {
@@ -37,6 +44,7 @@
 .slidecontainer {
   width: 50%;
   float: right;
+
 }
 
 #target a:active .st0 {
@@ -51,10 +59,12 @@
 
 .checked {
   fill: #f39c12;
+  opacity: 0.5;
 }
 
 .active_step {
   fill: #e74c3c;
+  opacity: 1;
 }
 
 body {
