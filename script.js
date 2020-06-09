@@ -9,7 +9,7 @@ var sample_url = "https://raw.githubusercontent.com/jkjellberg/gridstep/samples/
 // an array of instruments, needs to be the same as the amount of divs with class instrument_switcher
 const instruments = [
   {
-    synth: new Tone.Player(sample_url + "kick-606.wav"),
+    synth: new Tone.Player(sample_url + "kick-esm-iconic.wav"),
     note: "c2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
