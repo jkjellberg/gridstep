@@ -6,7 +6,18 @@ document.documentElement.addEventListener("mousedown", () => {
 // an array of instruments and their steps needs to be the same as the amount of divs with class instrument_switcher
 const instruments = [
   {
-    synth: new Tone.Synth(),
+    synth: new Tone.Sampler(
+      {
+        C3: "path/to/C3.mp3",
+        "D#3": "path/to/Dsharp3.mp3",
+        "F#3": "path/to/Fsharp3.mp3",
+        A3: "path/to/A3.mp3",
+      },
+      function () {
+        //sampler will repitch the closest sample
+        sampler.triggerAttack("D3");
+      }
+    ),
     note: "c2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
