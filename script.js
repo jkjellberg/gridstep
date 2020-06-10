@@ -49,13 +49,25 @@ const start_stop_btn = document.getElementById("start-stop");
 start_stop_btn.addEventListener("click", (e) => {
   Tone.Transport.toggle();
   start_stop_btn.classList.toggle("active");
-  step_indicator.forEach((step, i) => {
+  step_indicator.forEach((step) => {
     step.classList.remove("active_step");
   });
 
   step_indicator[0].classList.toggle("active_step");
   index = 0;
   previous_step = 0;
+});
+
+const clear_btn = document.getElementById("clear-btn");
+
+clear_btn.addEventListener("click", (e) => {
+  instruments.forEach((instrument) => {
+    instrument.steps = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    trigs.forEach((trig, j) => {
+      trig.classList.remove("checked");
+      step_indicator[j].classList.remove("checked");
+    });
+  });
 });
 
 // selects all shapes with class st0 (all the steps)
