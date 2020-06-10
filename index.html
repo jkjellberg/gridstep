@@ -15,7 +15,7 @@
   </head>
   <body>
     <div class="topdiv">
-      <div>
+      <div class="instrument-container">
         <div class="instrument_switcher active">KICK</div>
         <div class="instrument_switcher">SNR</div>
         <div class="instrument_switcher">CLAP</div>
@@ -27,8 +27,14 @@
       </div>
 
       <div class="slidecontainer">
-        <div id="bpm_amount" class="left">120</div>
-        <div class="right">BPM</div>
+        <div class="bpm-output">
+          <div class="bpm_amount_container">
+            <div id="bpm_amount" class="left">120</div>
+          </div>
+          <div class=bpm-container>
+            <div class="right">BPM</div>
+          </div>
+        </div>
         <input
           type="range"
           min="60"
