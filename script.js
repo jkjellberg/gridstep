@@ -4,7 +4,7 @@ document.documentElement.addEventListener("mousedown", () => {
 });
 
 var sample_url =
-  "https://raw.githubusercontent.com/jkjellberg/gridstep/samples/808/";
+  "https://raw.githubusercontent.com/jkjellberg/gridstep/master/samples/808/";
 // an array of instruments, needs to be the same as the amount of divs with class instrument_switcher
 const instruments = [
   {
