@@ -8,7 +8,7 @@ var sample_url =
 // an array of instruments, needs to be the same as the amount of divs with class instrument_switcher
 const instruments = [
   {
-    synth: new Tone.Player(sample_url + "kick.waw"),
+    synth: new Tone.Player(sample_url + "kick.wav"),
     note: "c2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
