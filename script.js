@@ -4,31 +4,46 @@ document.documentElement.addEventListener("mousedown", () => {
 });
 
 var sample_url =
-  "https://raw.githubusercontent.com/jkjellberg/gridstep/samples/samples/";
+  "https://raw.githubusercontent.com/jkjellberg/gridstep/master/samples/808/";
 // an array of instruments, needs to be the same as the amount of divs with class instrument_switcher
 const instruments = [
   {
-    synth: new Tone.Player(sample_url + "kick-esm-iconic.wav"),
+    synth: new Tone.Player(sample_url + "kick.wav"),
     note: "c2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "kick-606.wav"),
+    synth: new Tone.Player(sample_url + "sd.wav"),
     note: "g2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "kick-606.wav"),
+    synth: new Tone.Player(sample_url + "clap.wav"),
     note: "c4",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "kick-606.wav"),
+    synth: new Tone.Player(sample_url + "tl.wav"),
     note: "d#4",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "kick-606.wav"),
+    synth: new Tone.Player(sample_url + "th.wav"),
+    note: "g5",
+    steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    synth: new Tone.Player(sample_url + "ch.wav"),
+    note: "g5",
+    steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    synth: new Tone.Player(sample_url + "oh.wav"),
+    note: "g5",
+    steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    synth: new Tone.Player(sample_url + "cymbal.wav"),
     note: "g5",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
@@ -43,6 +58,32 @@ instruments.forEach((instrument) => instrument.synth.connect(gain));
 
 //selects all instrument switcher buttons
 const instr_buttons = document.querySelectorAll(".instrument_switcher");
+
+const start_stop_btn = document.getElementById("start-stop");
+
+start_stop_btn.addEventListener("click", (e) => {
+  Tone.Transport.toggle();
+  start_stop_btn.classList.toggle("active");
+  step_indicator.forEach((step) => {
+    step.classList.remove("active_step");
+  });
+
+  step_indicator[0].classList.toggle("active_step");
+  index = 0;
+  previous_step = 0;
+});
+
+const clear_btn = document.getElementById("clear-btn");
+
+clear_btn.addEventListener("click", (e) => {
+  instruments.forEach((instrument) => {
+    instrument.steps = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    trigs.forEach((trig, j) => {
+      trig.classList.remove("checked");
+      step_indicator[j].classList.remove("checked");
+    });
+  });
+});
 
 // selects all shapes with class st0 (all the steps)
 const trigs = document.querySelectorAll(".st0");
@@ -118,8 +159,6 @@ let previous_step = 0;
 
 // Initialize the time, will call function 'repeat' each 16ths note. 120 bpm by default.
 Tone.Transport.scheduleRepeat(repeat, "16n");
-//Start the function above
-Tone.Transport.start();
 
 // This will happen every 16th note
 function repeat(time) {

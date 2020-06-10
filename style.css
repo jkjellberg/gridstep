@@ -126,8 +126,11 @@ html {
   padding-top: 10px;
 
 }
+.instrument_switcher{
 
-.instrument_switcher {
+}
+
+.square_button {
   background-color: #cccccc;
   height: 10px;
   width: 50px;
@@ -137,11 +140,14 @@ html {
   opacity: 0.7;
   line-height: 50px;
 }
-.instrument_switcher.active {
+
+.instrument_switcher {
+}
+.square_button.active {
   background-color: #f39c12;
   opacity: 1;
 }
-.instrument_switcher.step {
+.square_button.step {
   background-color: #f39c12;
   opacity: 0.6;
 }
