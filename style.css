@@ -55,20 +55,20 @@
 
   font-size: 30px;
   width: 85px;
-  height: 40px;
+  height: 50px;
   position: absolute;
   bottom: 0;
 }
 
 .bpm-output{
-  height: 30px;
+  height: 20px;
   text-align: center;
   float: right;
 }
 
 .bpm-container{
   width: 30px;
-  height: 20px;
+  height: 10px;
   position: relative;
   float: left;
 
@@ -123,7 +123,7 @@ html {
 
 .instrument-container{
 
-  padding-top: 10px;
+  padding-top: 30px;
 
 }
 .instrument_switcher{
@@ -150,4 +150,9 @@ html {
 .square_button.step {
   background-color: #f39c12;
   opacity: 0.6;
+}
+
+.start-clear-wrapper{
+  margin-left: 80px;
+  float: left;
 }
