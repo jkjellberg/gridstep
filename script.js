@@ -44,6 +44,20 @@ instruments.forEach((instrument) => instrument.synth.connect(gain));
 //selects all instrument switcher buttons
 const instr_buttons = document.querySelectorAll(".instrument_switcher");
 
+const start_stop_btn = document.getElementById("start-stop");
+
+start_stop_btn.addEventListener("click", (e) => {
+  Tone.Transport.toggle();
+  start_stop_btn.classList.toggle("active");
+  step_indicator.forEach((step, i) => {
+    step.classList.remove("active_step");
+  });
+
+  step_indicator[0].classList.toggle("active_step");
+  index = 0;
+  previous_step = 0;
+});
+
 // selects all shapes with class st0 (all the steps)
 const trigs = document.querySelectorAll(".st0");
 
@@ -118,8 +132,6 @@ let previous_step = 0;
 
 // Initialize the time, will call function 'repeat' each 16ths note. 120 bpm by default.
 Tone.Transport.scheduleRepeat(repeat, "16n");
-//Start the function above
-Tone.Transport.start();
 
 // This will happen every 16th note
 function repeat(time) {
