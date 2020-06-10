@@ -4,31 +4,46 @@ document.documentElement.addEventListener("mousedown", () => {
 });
 
 var sample_url =
-  "https://raw.githubusercontent.com/jkjellberg/gridstep/samples/samples/";
+  "https://raw.githubusercontent.com/jkjellberg/gridstep/samples/808/";
 // an array of instruments, needs to be the same as the amount of divs with class instrument_switcher
 const instruments = [
   {
-    synth: new Tone.Player(sample_url + "kick-esm-iconic.wav"),
+    synth: new Tone.Player(sample_url + "kick.waw"),
     note: "c2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "kick-606.wav"),
+    synth: new Tone.Player(sample_url + "sd.wav"),
     note: "g2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "kick-606.wav"),
+    synth: new Tone.Player(sample_url + "clap.wav"),
     note: "c4",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "kick-606.wav"),
+    synth: new Tone.Player(sample_url + "tl.wav"),
     note: "d#4",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "kick-606.wav"),
+    synth: new Tone.Player(sample_url + "th.wav"),
+    note: "g5",
+    steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    synth: new Tone.Player(sample_url + "ch.wav"),
+    note: "g5",
+    steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    synth: new Tone.Player(sample_url + "oh.wav"),
+    note: "g5",
+    steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  },
+  {
+    synth: new Tone.Player(sample_url + "cymbal.wav"),
     note: "g5",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
