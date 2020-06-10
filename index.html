@@ -6,20 +6,29 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1"
     />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <script src="node_modules/tone/build/Tone.js"></script>
   </head>
   <body>
     <div class="topdiv">
       <div>
-        <div class="instrument_switcher active"></div>
-        <div class="instrument_switcher"></div>
-        <div class="instrument_switcher"></div>
-        <div class="instrument_switcher"></div>
-        <div class="instrument_switcher"></div>
+        <div class="instrument_switcher active">KICK</div>
+        <div class="instrument_switcher">SNR</div>
+        <div class="instrument_switcher">CLAP</div>
+        <div class="instrument_switcher">LT</div>
+        <div class="instrument_switcher">HT</div>
+        <div class="instrument_switcher">CH</div>
+        <div class="instrument_switcher">OH</div>
+        <div class="instrument_switcher">CYM</div>
       </div>
 
       <div class="slidecontainer">
+        <div id="bpm_amount" class="left">120</div>
+        <div class="right">BPM</div>
         <input
           type="range"
           min="60"
@@ -28,7 +37,6 @@
           class="slider"
           id="bpm_slider"
         />
-        <div id="bpm_amount">120 BPM</div>
       </div>
     </div>
 

@@ -47,7 +47,6 @@ const instr_buttons = document.querySelectorAll(".instrument_switcher");
 // selects all shapes with class st0 (all the steps)
 const trigs = document.querySelectorAll(".st0");
 
-
 // selects all shapes with class st0 (all the steps)
 const step_indicator = document.querySelectorAll(".step_indicator");
 
@@ -57,10 +56,9 @@ var bpm_slider = document.getElementById("bpm_slider"),
 
 //Function for bpm_slider
 bpm_slider.oninput = function () {
-  bpm_amount.innerHTML = this.value + " BPM";
+  bpm_amount.innerHTML = this.value;
   Tone.Transport.bpm.value = this.value;
 };
-
 
 //add event listener to all instrument buttons
 instr_buttons.forEach((item, i) => {
@@ -75,8 +73,11 @@ instr_buttons.forEach((item, i) => {
     //repaints the trigs to match the active instruments
     trigs.forEach((trig, j) => {
       trig.classList.remove("checked");
-      if (instruments[active_instrument_index].steps[j])
+      step_indicator[j].classList.remove("checked");
+      if (instruments[active_instrument_index].steps[j]) {
         trig.classList.toggle("checked");
+        step_indicator[j].classList.toggle("checked");
+      }
     });
   });
 });
@@ -128,9 +129,16 @@ function repeat(time) {
   step_indicator[previous_step].classList.remove("active_step");
   step_indicator[step].classList.toggle("active_step");
 
-  instruments.forEach((instrument) => {
+  instruments.forEach((instrument, i) => {
     // if the active step is cheked a note will be played.
-    if (instrument.steps[step]) instrument.synth.start(time, 0, "16n", 0);
+    if (instrument.steps[step]) {
+      instrument.synth.start(time, 0, "16n", 0);
+
+      instr_buttons[i].classList.toggle("step");
+      setTimeout(() => {
+        instr_buttons[i].classList.remove("step");
+      }, 50);
+    }
   });
 
   previous_step = step;
