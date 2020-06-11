@@ -10,27 +10,46 @@
       href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="node_modules/tone/build/Tone.js"></script>
   </head>
   <body>
-    <div class="topdiv">
-      <div class="instrument-container">
-        <div class="square_button instrument_switcher active">KICK</div>
-        <div class="square_button instrument_switcher">SNR</div>
-        <div class="square_button instrument_switcher">CLAP</div>
-        <div class="square_button instrument_switcher">LT</div>
-        <div class="square_button instrument_switcher">HT</div>
-        <div class="square_button instrument_switcher">CH</div>
-        <div class="square_button instrument_switcher">OH</div>
-        <div class="square_button instrument_switcher">CYM</div>
-      </div>
 
-      <div class="start-clear-wrapper">
+
+    </div>
+
+    <div class="topdiv row no-gutters">
+
+
+        <div class="instrument-section col-xl-7 pt-4">
+          <div class="instrument-row row no-gutters justify-content-center justify-content-sm-start">
+          <div class="col-xs-6 borders">
+            <div class="square_button instrument_switcher active">KICK</div>
+            <div class="square_button instrument_switcher">SNR</div>
+            <div class="square_button instrument_switcher">CLAP</div>
+            <div class="square_button instrument_switcher">LT</div>
+          </div>
+        <!--</div>
+        <div class="instrument-section col-lg-3 col-md-12 col-sm-12 borders pt-4">-->
+          <div class="col-xs-6 borders">
+            <div class="square_button instrument_switcher">HT</div>
+            <div class="square_button instrument_switcher">CH</div>
+            <div class="square_button instrument_switcher">OH</div>
+            <div class="square_button instrument_switcher">CYM</div>
+          </div>
+        </div>
+        </div>
+
+
+      <div class="start-clear-wrapper col-xl-2 col-sm-6 borders pt-4">
+        <div class="start-clear-row row no-gutters justify-content-center justify-content-sm-start">
         <div id="start-stop" class="square_button">START</div>
         <div id="clear-btn" class="square_button">CLEAR</div>
       </div>
-      <div class="slidecontainer">
+      </div>
+      <div class="slidecontainer col-xl-3 col-sm-6 borders pt-4">
         <div class="bpm-output">
           <div class="bpm_amount_container">
             <div id="bpm_amount" class="left">120</div>
@@ -49,6 +68,7 @@
         />
       </div>
     </div>
+
 
     <svg class="grid" version="1.1" x="0px" y="0px" viewBox="0 0 715 400">
       <rect
@@ -262,5 +282,6 @@
     </svg>
 
     <script src="script.js"></script>
+    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
