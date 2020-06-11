@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="node_modules/tone/build/Tone.js"></script>
+  </head>
+  <body>
+    <div class="topdiv">
+      <div class="instrument-container">
+        <div class="square_button instrument_switcher active">KICK</div>
+        <div class="square_button instrument_switcher">SNR</div>
+        <div class="square_button instrument_switcher">CLAP</div>
+        <div class="square_button instrument_switcher">LT</div>
+        <div class="square_button instrument_switcher">HT</div>
+        <div class="square_button instrument_switcher">CH</div>
+        <div class="square_button instrument_switcher">OH</div>
+        <div class="square_button instrument_switcher">CYM</div>
+      </div>
+
+      <div class="start-clear-wrapper">
+        <div id="start-stop" class="square_button">START</div>
+        <div id="clear-btn" class="square_button">CLEAR</div>
+      </div>
+      <div class="slidecontainer">
+        <div class="bpm-output">
+          <div class="bpm_amount_container">
+            <div id="bpm_amount" class="left">120</div>
+          </div>
+          <div class="bpm-container">
+            <div class="right">BPM</div>
+          </div>
+        </div>
+        <input
+          type="range"
+          min="60"
+          max="240"
+          value="120"
+          class="slider"
+          id="bpm_slider"
+        />
+      </div>
+    </div>
+
+    <svg class="grid" version="1.1" x="0px" y="0px" viewBox="0 0 715 400">
+      <polygon
+        id="one"
+        class="step_indicator"
+        points="535 14 180 14 208.025373 42 506.974627 42"
+      ></polygon>
+      <polygon
+        id="two"
+        class="step_indicator"
+        points="544 21 544 379 515 349.85412 515 50.1458803"
+      ></polygon>
+      <polygon
+        id="three"
+        class="step_indicator"
+        points="506.892444 357 208.107556 357 180 385 535 385"
+      ></polygon>
+      <polygon
+        id="four"
+        class="step_indicator"
+        points="171 23 171 377 200 349.012574 200 50.9874264"
+      ></polygon>
+      <polygon
+        id="five"
+        class="step_indicator"
+        points="492 57 223 57 252.713792 87 462.286208 87"
+      ></polygon>
+      <polygon
+        id="six"
+        class="step_indicator"
+        points="499 66 470 95.6608113 470 304.339189 499 334"
+      ></polygon>
+      <polygon
+        id="seven"
+        class="step_indicator"
+        points="460.872943 312 254.127057 312 224 342 491 342"
+      ></polygon>
+      <polygon
+        id="eight"
+        class="step_indicator"
+        points="215 66 215 334 246 303.818706 246 96.1812936"
+      ></polygon>
+      <polygon
+        id="nine"
+        class="step_indicator"
+        points="448 101 267 101 292.855444 126.99948 422.144039 127"
+      ></polygon>
+      <polygon
+        id="ten"
+        class="step_indicator"
+        points="456 109 431 135.07278 431 264.92722 456 291"
+      ></polygon>
+      <polygon
+        id="eleven"
+        class="step_indicator"
+        points="421.995972 273 293.004028 273 267 299 448 299"
+      ></polygon>
+      <polygon
+        id="twelve"
+        class="step_indicator"
+        points="259 109 259 291 284 264.92707 284 135.07293"
+      ></polygon>
+      <polygon
+        id="thirteen"
+        class="step_indicator"
+        points="411 139 384.361024 165 330.638976 165 304 139"
+      ></polygon>
+      <polygon
+        id="fourteen"
+        class="step_indicator"
+        points="418 147 418 253 391 226.480528 391 173.519472"
+      ></polygon>
+      <polygon
+        id="fiveteen"
+        class="step_indicator"
+        points="331.398789 234 383.601211 234 410 260 305 260"
+      ></polygon>
+      <polygon
+        id="sixteen"
+        class="step_indicator"
+        points="297 253 297 147 324 173.519472 324 226.480528"
+      ></polygon>
+      <polygon
+        id="one"
+        class="st0"
+        points="535 14 180 14 208.025373 42 506.974627 42"
+      ></polygon>
+      <polygon
+        id="two"
+        class="st0"
+        points="544 21 544 379 515 349.85412 515 50.1458803"
+      ></polygon>
+      <polygon
+        id="three"
+        class="st0"
+        points="506.892444 357 208.107556 357 180 385 535 385"
+      ></polygon>
+      <polygon
+        id="four"
+        class="st0"
+        points="171 23 171 377 200 349.012574 200 50.9874264"
+      ></polygon>
+      <polygon
+        id="five"
+        class="st0"
+        points="492 57 223 57 252.713792 87 462.286208 87"
+      ></polygon>
+      <polygon
+        id="six"
+        class="st0"
+        points="499 66 470 95.6608113 470 304.339189 499 334"
+      ></polygon>
+      <polygon
+        id="seven"
+        class="st0"
+        points="460.872943 312 254.127057 312 224 342 491 342"
+      ></polygon>
+      <polygon
+        id="eight"
+        class="st0"
+        points="215 66 215 334 246 303.818706 246 96.1812936"
+      ></polygon>
+      <polygon
+        id="nine"
+        class="st0"
+        points="448 101 267 101 292.855444 126.99948 422.144039 127"
+      ></polygon>
+      <polygon
+        id="ten"
+        class="st0"
+        points="456 109 431 135.07278 431 264.92722 456 291"
+      ></polygon>
+      <polygon
+        id="eleven"
+        class="st0"
+        points="421.995972 273 293.004028 273 267 299 448 299"
+      ></polygon>
+      <polygon
+        id="twelve"
+        class="st0"
+        points="259 109 259 291 284 264.92707 284 135.07293"
+      ></polygon>
+      <polygon
+        id="thirteen"
+        class="st0"
+        points="411 139 384.361024 165 330.638976 165 304 139"
+      ></polygon>
+      <polygon
+        id="fourteen"
+        class="st0"
+        points="418 147 418 253 391 226.480528 391 173.519472"
+      ></polygon>
+      <polygon
+        id="fiveteen"
+        class="st0"
+        points="331.398789 234 383.601211 234 410 260 305 260"
+      ></polygon>
+      <polygon
+        id="sixteen"
+        class="st0"
+        points="297 253 297 147 324 173.519472 324 226.480528"
+      ></polygon>
+    </svg>
+
+    <script src="script.js"></script>
+  </body>
+</html>
