@@ -224,18 +224,20 @@ html {
 .sidenav {
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
-  position: absolute; /* Stay in place */
+  position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
+  top: 0!important; /* Stay at the top */
   right: 0;
   background-color: #111; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   /*transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-  overflow-y: scroll !important;
+  overflow-y: auto!important;
   -webkit-overflow-scrolling: touch;
 
 }
+
+
 
 /* The navigation menu links */
 .sidenav a {
