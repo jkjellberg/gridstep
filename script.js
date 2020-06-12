@@ -3,6 +3,11 @@ document.documentElement.addEventListener("mousedown", () => {
   if (Tone.context.state !== "running") Tone.context.resume();
 });
 
+// variables for the stepsequencer
+let index = 0; // keeps track on wich step the the stepsequencer are at
+let previous_step = 0; //keeps track on the previous step
+let active_instrument_index = 0; //keeps track on wich instrument that is active
+
 var sample_url =
   "https://raw.githubusercontent.com/jkjellberg/gridstep/master/samples/808/";
 // an array of instruments, needs to be the same as the amount of divs with class instrument_switcher
@@ -49,8 +54,6 @@ const instruments = [
   },
 ];
 
-let active_instrument_index = 0;
-
 const gain = new Tone.Gain(0.6);
 gain.toMaster();
 
@@ -73,8 +76,9 @@ start_stop_btn.addEventListener("click", (e) => {
   previous_step = 0;
 });
 
+//Select clear_btn
 const clear_btn = document.getElementById("clear-btn");
-
+//Connect clear button to fucntion
 clear_btn.addEventListener("click", (e) => {
   instruments.forEach((instrument) => {
     instrument.steps = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -84,12 +88,6 @@ clear_btn.addEventListener("click", (e) => {
     });
   });
 });
-
-// selects all shapes with class st0 (all the steps)
-const trigs = document.querySelectorAll(".st0");
-
-// selects all shapes with class st0 (all the steps)
-const step_indicator = document.querySelectorAll(".step_indicator");
 
 //Connect the bpm slider
 var bpm_slider = document.getElementById("bpm_slider"),
@@ -127,6 +125,17 @@ instr_buttons.forEach((item, i) => {
 document.body.addEventListener("pointerdown", (e) => {
   document.body.releasePointerCapture(e.pointerId); //
 });
+// does the same thing with the svg background as with the body.
+const svg_background = document.getElementById("svg_background");
+svg_background.addEventListener("pointerdown", (e) => {
+  svg_background.releasePointerCapture(e.pointerId); //
+});
+
+// selects all shapes with class st0 (all the steps)
+const trigs = document.querySelectorAll(".st0");
+
+// selects all shapes with class st0 (all the steps)
+const step_indicator = document.querySelectorAll(".step_indicator");
 
 // adds eventlisteners to all steps
 trigs.forEach((trig, i) => {
@@ -152,10 +161,6 @@ trigs.forEach((trig, i) => {
   //console.log("leave");
   //});
 });
-
-// variables for the stepsequencer
-let index = 0;
-let previous_step = 0;
 
 // Initialize the time, will call function 'repeat' each 16ths note. 120 bpm by default.
 Tone.Transport.scheduleRepeat(repeat, "16n");
