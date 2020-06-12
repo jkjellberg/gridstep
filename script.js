@@ -67,9 +67,12 @@ const instr_buttons = document.querySelectorAll(".instrument_switcher");
 const start_stop_btn = document.getElementById("start-stop");
 
 //change-pattern-button
-$(document).on("pointerdown", "#changePattern", function (e) {
+$("#changePattern").click(function (e) {
   activeGrid = (activeGrid + 1) % grids.length;
-  loadAndRepaintGrid(grids[activeGrid] + ".html");
+  loadGrid(grids[activeGrid] + ".html");
+  //setTimeout(() => {
+  //  repaint_trigs();
+  //}, 200);
 });
 
 start_stop_btn.addEventListener("click", (e) => {
@@ -118,10 +121,12 @@ instr_buttons.forEach((item, i) => {
 
 function repaint_trigs() {
   //repaints the trigs to match the active instruments
+  console.log("hej");
   $(".step_indicator").removeClass("checked");
   $(".st0").removeClass("checked");
   for (var j = 0; j < 16; j++) {
     if (instruments[active_instrument_index].steps[j]) {
+      console.log("step " + j + " is repainted.");
       $(".step_indicator").eq(j).addClass("checked");
       $(".st0").eq(j).addClass("checked");
     }
@@ -133,17 +138,21 @@ document.body.addEventListener("pointerdown", (e) => {
   document.body.releasePointerCapture(e.pointerId); //
 });
 
-async function loadAndRepaintGrid(svg_file) {
-  await loadGrid(svg_file);
-  repaint_trigs();
+async function loadGrid(svg_file) {
+  $("#pattern_container").empty();
+  $("#pattern_container").load(
+    "https://raw.githubusercontent.com/jkjellberg/gridstep/svg-selector/patterns/" +
+      svg_file,
+    repaint_trigs
+  );
 }
-function loadGrid(svg_file) {
+function loadAndConnectGrid(svg_file) {
   //clears the old pattern and loads the new svg-pattern into the file
   $("#pattern_container").empty();
   $("#pattern_container").load(
     "https://raw.githubusercontent.com/jkjellberg/gridstep/svg-selector/patterns/" +
       svg_file,
-    connectGrid()
+    connectGrid
   );
   return;
 }
@@ -160,6 +169,7 @@ function connectGrid() {
   $(document).on("pointerenter", ".st0", function () {
     let i = $(".st0").index(this);
     $(this).toggleClass("checked");
+    console.log(i + " activated");
     $(".step_indicator").eq(i).toggleClass("checked");
     instruments[active_instrument_index].steps[i] = !instruments[
       active_instrument_index
@@ -167,7 +177,7 @@ function connectGrid() {
   });
 }
 
-loadGrid("1.html");
+loadAndConnectGrid(grids[activeGrid] + ".html");
 
 // Initialize the time, will call function 'repeat' each 16ths note. 120 bpm by default.
 Tone.Transport.scheduleRepeat(repeat, "16n");
