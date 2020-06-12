@@ -7,6 +7,8 @@ document.documentElement.addEventListener("mousedown", () => {
 let index = 0; // keeps track on wich step the the stepsequencer are at
 let previous_step = 0; //keeps track on the previous step
 let active_instrument_index = 0; //keeps track on wich instrument that is active
+let trigs;
+let step_indicator;
 
 var sample_url =
   "https://raw.githubusercontent.com/jkjellberg/gridstep/master/samples/808/";
@@ -125,21 +127,20 @@ instr_buttons.forEach((item, i) => {
 document.body.addEventListener("pointerdown", (e) => {
   document.body.releasePointerCapture(e.pointerId); //
 });
-
-function paintGrid(svg_file) {
+async function loadGrid(svg_file) {
   //load the svg-pattern into the file
-  $("#pattern_container").load("./patterns/" + svg_file);
-
+  $("#pattern_container").load(
+    "https://raw.githubusercontent.com/jkjellberg/gridstep/svg-selector/patterns/" +
+      svg_file
+  );
+  return;
+}
+function connectGrid() {
   // makes it possible to start the swipe outside of the pattern
-  document
-    .getElementById("svg_background")
-    .addEventListener("pointerdown", (e) => {
-      getElementById("svg_background").releasePointerCapture(e.pointerId); //
-    });
 
   // selects all shapes with class st0 (all the steps)
   let trigs = document.querySelectorAll(".st0");
-
+  console.log(trigs);
   // selects all shapes with class st0 (all the steps)
   let step_indicator = document.querySelectorAll(".step_indicator");
 
@@ -167,11 +168,16 @@ function paintGrid(svg_file) {
     //console.log("leave");
     //});
   });
-
-  return [trigs, step_indicator];
 }
 
-let [trigs, step_indicator] = paintGrid("1.html");
+async function paintGrid(svg_file) {
+  await loadGrid(svg_file);
+  console.log("hej");
+  connectGrid();
+  console.log(trigs);
+}
+
+paintGrid("1.html");
 
 // Initialize the time, will call function 'repeat' each 16ths note. 120 bpm by default.
 Tone.Transport.scheduleRepeat(repeat, "16n");
