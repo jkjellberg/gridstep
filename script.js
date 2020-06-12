@@ -7,6 +7,8 @@ document.documentElement.addEventListener("mousedown", () => {
 let index = 0; // keeps track on wich step the the stepsequencer are at
 let previous_step = 0; //keeps track on the previous step
 let active_instrument_index = 0; //keeps track on wich instrument that is active
+let grids = [1, 2, 3, 4];
+let activeGrid = 0;
 
 var sample_url =
   "https://raw.githubusercontent.com/jkjellberg/gridstep/master/samples/808/";
@@ -64,14 +66,20 @@ const instr_buttons = document.querySelectorAll(".instrument_switcher");
 
 const start_stop_btn = document.getElementById("start-stop");
 
+//change-pattern-button
+$("#changePattern").click(function (e) {
+  activeGrid = (activeGrid + 1) % grids.length;
+  loadGrid(grids[activeGrid] + ".html");
+  //setTimeout(() => {
+  //  repaint_trigs();
+  //}, 200);
+});
+
 start_stop_btn.addEventListener("click", (e) => {
   Tone.Transport.toggle();
   start_stop_btn.classList.toggle("active");
-  step_indicator.forEach((step) => {
-    step.classList.remove("active_step");
-  });
-
-  step_indicator[0].classList.toggle("active_step");
+  $(".step_indicator").removeClass("active_step");
+  $(".step_indicator").eq(0).addClass("active_step");
   index = 0;
   previous_step = 0;
 });
@@ -80,12 +88,11 @@ start_stop_btn.addEventListener("click", (e) => {
 const clear_btn = document.getElementById("clear-btn");
 //Connect clear button to fucntion
 clear_btn.addEventListener("click", (e) => {
+  $(".st0").removeClass("checked");
+  $(".step_indicator").removeClass("checked");
+
   instruments.forEach((instrument) => {
     instrument.steps = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    trigs.forEach((trig, j) => {
-      trig.classList.remove("checked");
-      step_indicator[j].classList.remove("checked");
-    });
   });
 });
 
@@ -108,59 +115,69 @@ instr_buttons.forEach((item, i) => {
     //sets the class active on the active instrument
     item.classList.toggle("active");
     active_instrument_index = i;
-
-    //repaints the trigs to match the active instruments
-    trigs.forEach((trig, j) => {
-      trig.classList.remove("checked");
-      step_indicator[j].classList.remove("checked");
-      if (instruments[active_instrument_index].steps[j]) {
-        trig.classList.toggle("checked");
-        step_indicator[j].classList.toggle("checked");
-      }
-    });
+    repaint_trigs();
   });
 });
+
+function repaint_trigs() {
+  //repaints the trigs to match the active instruments
+  console.log("hej");
+  $(".step_indicator").removeClass("checked");
+  $(".st0").removeClass("checked");
+  for (var j = 0; j < 16; j++) {
+    if (instruments[active_instrument_index].steps[j]) {
+      console.log("step " + j + " is repainted.");
+      $(".step_indicator").eq(j).addClass("checked");
+      $(".st0").eq(j).addClass("checked");
+    }
+  }
+}
 
 //Lets the user start the 'swipe' outside of the grid as long as they start it in the body
 document.body.addEventListener("pointerdown", (e) => {
   document.body.releasePointerCapture(e.pointerId); //
 });
-// does the same thing with the svg background as with the body.
-const svg_background = document.getElementById("svg_background");
-svg_background.addEventListener("pointerdown", (e) => {
-  svg_background.releasePointerCapture(e.pointerId); //
-});
 
-// selects all shapes with class st0 (all the steps)
-const trigs = document.querySelectorAll(".st0");
-
-// selects all shapes with class st0 (all the steps)
-const step_indicator = document.querySelectorAll(".step_indicator");
-
-// adds eventlisteners to all steps
-trigs.forEach((trig, i) => {
-  //adds a pointer down listerner to each step to be able to release the target
-  trig.addEventListener("pointerdown", (e) => {
-    //console.log("down");
-    //console.log("attempt release implicit capture");
-    trig.releasePointerCapture(e.pointerId); // <- Important!
+async function loadGrid(svg_file) {
+  $("#pattern_container").empty();
+  $("#pattern_container").load(
+    "https://raw.githubusercontent.com/jkjellberg/gridstep/svg-selector/patterns/" +
+      svg_file,
+    repaint_trigs
+  );
+}
+function loadAndConnectGrid(svg_file) {
+  //clears the old pattern and loads the new svg-pattern into the file
+  $("#pattern_container").empty();
+  $("#pattern_container").load(
+    "https://raw.githubusercontent.com/jkjellberg/gridstep/svg-selector/patterns/" +
+      svg_file,
+    connectGrid
+  );
+  return;
+}
+function connectGrid() {
+  // makes it possible to start the swipe outside of the pattern or in the pattern
+  $(document).on("pointerdown", "#svg_background", function (e) {
+    $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
   });
 
-  //adds a pointerenter event listener to all steps
-  trig.addEventListener("pointerenter", (e) => {
-    //console.log("enter");
-    // add the class checked if mouse/fingers enters shape (doesn't care if mouse is down atm...)
-    trig.classList.toggle("checked");
-    step_indicator[i].classList.toggle("checked");
+  $(document).on("pointerdown", ".st0", function (e) {
+    $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+  });
+
+  $(document).on("pointerenter", ".st0", function () {
+    let i = $(".st0").index(this);
+    $(this).toggleClass("checked");
+    console.log(i + " activated");
+    $(".step_indicator").eq(i).toggleClass("checked");
     instruments[active_instrument_index].steps[i] = !instruments[
       active_instrument_index
     ].steps[i];
   });
-  // we don't need this at the moment, but adds a listener for when the finger/pointer leaves the shape
-  //trig.addEventListener("pointerleave", (e) => {
-  //console.log("leave");
-  //});
-});
+}
+
+loadAndConnectGrid(grids[activeGrid] + ".html");
 
 // Initialize the time, will call function 'repeat' each 16ths note. 120 bpm by default.
 Tone.Transport.scheduleRepeat(repeat, "16n");
@@ -170,8 +187,8 @@ function repeat(time) {
   let step = index % 16;
 
   // remove the class active_step from the previous step and adds it to the active step
-  step_indicator[previous_step].classList.remove("active_step");
-  step_indicator[step].classList.toggle("active_step");
+  $(".step_indicator").eq(previous_step).removeClass("active_step");
+  $(".step_indicator").eq(step).addClass("active_step");
 
   instruments.forEach((instrument, i) => {
     // if the active step is cheked a note will be played.
