@@ -7,6 +7,8 @@ document.documentElement.addEventListener("mousedown", () => {
 let index = 0; // keeps track on wich step the the stepsequencer are at
 let previous_step = 0; //keeps track on the previous step
 let active_instrument_index = 0; //keeps track on wich instrument that is active
+let grids = [1, 2];
+let activeGrid = 0;
 
 var sample_url =
   "https://raw.githubusercontent.com/jkjellberg/gridstep/master/samples/808/";
@@ -64,6 +66,12 @@ const instr_buttons = document.querySelectorAll(".instrument_switcher");
 
 const start_stop_btn = document.getElementById("start-stop");
 
+//change-pattern-button
+$(document).on("pointerdown", "#changePattern", function (e) {
+  activeGrid = (activeGrid + 1) % grids.length;
+  loadAndRepaintGrid(grids[activeGrid] + ".html");
+});
+
 start_stop_btn.addEventListener("click", (e) => {
   Tone.Transport.toggle();
   start_stop_btn.classList.toggle("active");
@@ -104,27 +112,31 @@ instr_buttons.forEach((item, i) => {
     //sets the class active on the active instrument
     item.classList.toggle("active");
     active_instrument_index = i;
-
-    //repaints the trigs to match the active instruments
-    $(".step_indicator").removeClass("checked");
-    $(".st0").removeClass("checked");
-    for (var j = 0; j < 16; j++) {
-      if (instruments[active_instrument_index].steps[j]) {
-        $(".step_indicator").addClass("checked");
-        $(".st0").addClass("checked");
-      }
-    }
+    repaint_trigs();
   });
 });
 
+function repaint_trigs() {
+  //repaints the trigs to match the active instruments
+  $(".step_indicator").removeClass("checked");
+  $(".st0").removeClass("checked");
+  for (var j = 0; j < 16; j++) {
+    if (instruments[active_instrument_index].steps[j]) {
+      $(".step_indicator").eq(j).addClass("checked");
+      $(".st0").eq(j).addClass("checked");
+    }
+  }
+}
+
 //Lets the user start the 'swipe' outside of the grid as long as they start it in the body
 document.body.addEventListener("pointerdown", (e) => {
-  console.log("body start:");
-  console.log(document.body);
-  console.log(e);
-  console.log("body slut!");
   document.body.releasePointerCapture(e.pointerId); //
 });
+
+async function loadAndRepaintGrid(svg_file) {
+  await loadGrid(svg_file);
+  repaint_trigs();
+}
 function loadGrid(svg_file) {
   //clears the old pattern and loads the new svg-pattern into the file
   $("#pattern_container").empty();
@@ -133,14 +145,16 @@ function loadGrid(svg_file) {
       svg_file,
     connectGrid()
   );
+  return;
 }
 function connectGrid() {
-  // makes it possible to start the swipe outside of the pattern
+  // makes it possible to start the swipe outside of the pattern or in the pattern
+  $(document).on("pointerdown", "#svg_background", function (e) {
+    $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+  });
 
   $(document).on("pointerdown", ".st0", function (e) {
-    console.log(e.originalEvent);
-    console.log($(this));
-    $(this).releasePointerCapture(e.originalEvent.pointerId);
+    $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
   });
 
   $(document).on("pointerenter", ".st0", function () {
