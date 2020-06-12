@@ -18,50 +18,42 @@
     <script src="node_modules/tone/build/Tone.js"></script>
   </head>
   <body>
-
     <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        >&times;</a
+      >
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
     </div>
 
-
-
     <div class="topdiv row no-gutters">
-
-
-        <div class="instrument-section col-lg-7 pt-4">
-          <div class="instrument-row row no-gutters justify-content-sm-start">
+      <div class="instrument-section col-lg-7 pt-4">
+        <div class="instrument-row row no-gutters justify-content-sm-start">
           <div class="all-instruments col-sm-12">
-
             <div class="square_button instrument_switcher active">KICK</div>
             <div class="square_button instrument_switcher">SNR</div>
             <div class="square_button instrument_switcher">CLAP</div>
             <div class="square_button instrument_switcher">LT</div>
 
-
-
-        <!--</div>
+            <!--</div>
         <div class="instrument-section col-lg-3 col-md-12 col-sm-12 borders pt-4">-->
 
             <div class="square_button instrument_switcher">HT</div>
             <div class="square_button instrument_switcher">CH</div>
             <div class="square_button instrument_switcher">OH</div>
             <div class="square_button instrument_switcher">CYM</div>
-
+          </div>
         </div>
-
-</div>
-        </div>
-
+      </div>
 
       <div class="start-clear-wrapper col-lg-2 col-sm-6 borders pt-4">
         <div class="start-clear-row row no-gutters justify-content-sm-start">
-        <div id="start-stop" class="square_button">START</div>
-        <div id="clear-btn" class="square_button">CLEAR</div>
-        <!--<div class="dropdown">
+          <div id="start-stop" class="square_button">START</div>
+          <div id="clear-btn" class="square_button">CLEAR</div>
+          <div id="changePattern" class="square_button">PATTERN</div>
+          <!--<div class="dropdown">
           <button onclick="myFunction()" class="dropbtn">
             SOUND
           </button>
@@ -91,18 +83,24 @@
           id="bpm_slider"
         />
       </div>
-      <div class="col-lg-1">
-      </div>
+      <div class="col-lg-1"></div>
 
       <div class="hamburgerdiv">
-      <span onclick="openNav()">
-        <svg class="hamburger" width="50" height="60" viewBox="0 0 100 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect y="15" width="50" height="8" rx="6" fill="#C4C4C4"/>
-            <rect width="50" height="8" rx="6" fill="#C4C4C4"/>
-            <rect y="30" width="50" height="8" rx="6" fill="#C4C4C4"/>
-        </svg>
-      </span>
-    </div>
+        <span onclick="openNav()">
+          <svg
+            class="hamburger"
+            width="50"
+            height="60"
+            viewBox="0 0 100 5"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect y="15" width="50" height="8" rx="6" fill="#C4C4C4" />
+            <rect width="50" height="8" rx="6" fill="#C4C4C4" />
+            <rect y="30" width="50" height="8" rx="6" fill="#C4C4C4" />
+          </svg>
+        </span>
+      </div>
     </div>
     <div id="pattern_container"></div>
 
