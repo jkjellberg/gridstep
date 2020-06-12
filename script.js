@@ -7,7 +7,7 @@ document.documentElement.addEventListener("mousedown", () => {
 let index = 0; // keeps track on wich step the the stepsequencer are at
 let previous_step = 0; //keeps track on the previous step
 let active_instrument_index = 0; //keeps track on wich instrument that is active
-let grids = [1, 2];
+let grids = [1, 2, 3, 4];
 let activeGrid = 0;
 
 var sample_url =
