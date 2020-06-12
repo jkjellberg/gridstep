@@ -7,8 +7,6 @@ document.documentElement.addEventListener("mousedown", () => {
 let index = 0; // keeps track on wich step the the stepsequencer are at
 let previous_step = 0; //keeps track on the previous step
 let active_instrument_index = 0; //keeps track on wich instrument that is active
-let trigs;
-let step_indicator;
 
 var sample_url =
   "https://raw.githubusercontent.com/jkjellberg/gridstep/master/samples/808/";
@@ -69,11 +67,8 @@ const start_stop_btn = document.getElementById("start-stop");
 start_stop_btn.addEventListener("click", (e) => {
   Tone.Transport.toggle();
   start_stop_btn.classList.toggle("active");
-  step_indicator.forEach((step) => {
-    step.classList.remove("active_step");
-  });
-
-  step_indicator[0].classList.toggle("active_step");
+  $(".step_indicator").removeClass("active_step");
+  $(".step_indicator").eq(0).addClass("active_step");
   index = 0;
   previous_step = 0;
 });
@@ -82,12 +77,11 @@ start_stop_btn.addEventListener("click", (e) => {
 const clear_btn = document.getElementById("clear-btn");
 //Connect clear button to fucntion
 clear_btn.addEventListener("click", (e) => {
+  $(".st0").removeClass("checked");
+  $(".step_indicator").removeClass("checked");
+
   instruments.forEach((instrument) => {
     instrument.steps = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    trigs.forEach((trig, j) => {
-      trig.classList.remove("checked");
-      step_indicator[j].classList.remove("checked");
-    });
   });
 });
 
@@ -112,14 +106,14 @@ instr_buttons.forEach((item, i) => {
     active_instrument_index = i;
 
     //repaints the trigs to match the active instruments
-    trigs.forEach((trig, j) => {
-      trig.classList.remove("checked");
-      step_indicator[j].classList.remove("checked");
+    $(".step_indicator").removeClass("checked");
+    $(".st0").removeClass("checked");
+    for (var j = 0; j < 16; j++) {
       if (instruments[active_instrument_index].steps[j]) {
-        trig.classList.toggle("checked");
-        step_indicator[j].classList.toggle("checked");
+        $(".step_indicator").addClass("checked");
+        $(".st0").addClass("checked");
       }
-    });
+    }
   });
 });
 
@@ -127,7 +121,7 @@ instr_buttons.forEach((item, i) => {
 document.body.addEventListener("pointerdown", (e) => {
   document.body.releasePointerCapture(e.pointerId); //
 });
-async function loadGrid(svg_file) {
+function loadGrid(svg_file) {
   //clears the old pattern and loads the new svg-pattern into the file
   $("#pattern_container").empty();
   $("#pattern_container").load(
@@ -135,52 +129,26 @@ async function loadGrid(svg_file) {
       svg_file,
     connectGrid()
   );
-  return;
 }
 function connectGrid() {
   // makes it possible to start the swipe outside of the pattern
 
-  // selects all shapes with class st0 (all the steps)
-  trigs = document.querySelectorAll(".st0");
-  console.log(trigs);
-  // selects all shapes with class st0 (all the steps)
-  step_indicator = document.querySelectorAll(".step_indicator");
+  $(document).on("pointerDown", ".st0", function (e) {
+    $(this).releasePointerCapture(e.pointerId);
+  });
 
-  // adds eventlisteners to all steps
-  trigs.forEach((trig, i) => {
-    //adds a pointer down listerner to each step to be able to release the target
-    trig.addEventListener("pointerdown", (e) => {
-      //console.log("down");
-      //console.log("attempt release implicit capture");
-      trig.releasePointerCapture(e.pointerId); // <- Important!
-    });
-
-    //adds a pointerenter event listener to all steps
-    trig.addEventListener("pointerenter", (e) => {
-      //console.log("enter");
-      // add the class checked if mouse/fingers enters shape (doesn't care if mouse is down atm...)
-      trig.classList.toggle("checked");
-      step_indicator[i].classList.toggle("checked");
-      instruments[active_instrument_index].steps[i] = !instruments[
-        active_instrument_index
-      ].steps[i];
-    });
-    // we don't need this at the moment, but adds a listener for when the finger/pointer leaves the shape
-    //trig.addEventListener("pointerleave", (e) => {
-    //console.log("leave");
-    //});
+  $(document).on("pointerenter", ".st0", function () {
+    let i = $(".st0").index(this);
+    console.log(i);
+    $(this).toggleClass("checked");
+    $(".step_indicator").eq(i).toggleClass("checked");
+    instruments[active_instrument_index].steps[i] = !instruments[
+      active_instrument_index
+    ].steps[i];
   });
 }
 
-async function paintGrid(svg_file) {
-  await loadGrid(svg_file);
-  console.log("hej");
-  //connectGrid();
-  console.log(trigs);
-}
-
-paintGrid("2.html");
-console.log("klar");
+loadGrid("1.html");
 
 // Initialize the time, will call function 'repeat' each 16ths note. 120 bpm by default.
 Tone.Transport.scheduleRepeat(repeat, "16n");
@@ -190,8 +158,8 @@ function repeat(time) {
   let step = index % 16;
 
   // remove the class active_step from the previous step and adds it to the active step
-  step_indicator[previous_step].classList.remove("active_step");
-  step_indicator[step].classList.toggle("active_step");
+  $(".step_indicator").eq(previous_step).removeClass("active_step");
+  $(".step_indicator").eq(step).addClass("active_step");
 
   instruments.forEach((instrument, i) => {
     // if the active step is cheked a note will be played.
