@@ -29,7 +29,7 @@
   --breakpoint-xs: 0;
   --breakpoint-sm: 650px;
   --breakpoint-md: 768px;
-  --breakpoint-lg: 1050px;
+  --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
@@ -450,7 +450,7 @@ pre {
   @media (min-width: 768px) {
     .container {
       max-width: 720px; } }
-  @media (min-width: 1050px) {
+  @media (min-width: 992px) {
     .container {
       max-width: 960px; } }
   @media (min-width: 1200px) {
@@ -470,7 +470,7 @@ pre {
 @media (min-width: 768px) {
   .container, .container-sm, .container-md {
     max-width: 720px; } }
-@media (min-width: 1050px) {
+@media (min-width: 992px) {
   .container, .container-sm, .container-md, .container-lg {
     max-width: 960px; } }
 @media (min-width: 1200px) {
@@ -990,7 +990,7 @@ pre {
 
   .offset-md-11 {
     margin-left: 91.6666666667%; } }
-@media (min-width: 1050px) {
+@media (min-width: 992px) {
   .col-lg {
     flex-basis: 0;
     flex-grow: 1;
@@ -1538,7 +1538,7 @@ pre {
     -webkit-overflow-scrolling: touch; }
     .table-responsive-md > .table-bordered {
       border: 0; } }
-@media (max-width: 1049.98px) {
+@media (max-width: 991.98px) {
   .table-responsive-lg {
     display: block;
     width: 100%;
@@ -2400,7 +2400,7 @@ input[type="button"].btn-block {
   .dropdown-menu-md-right {
     right: 0;
     left: auto; } }
-@media (min-width: 1050px) {
+@media (min-width: 992px) {
   .dropdown-menu-lg-left {
     right: auto;
     left: 0; }
@@ -3274,7 +3274,7 @@ input[type="button"].btn-block {
       flex-basis: auto; }
     .navbar-expand-md .navbar-toggler {
       display: none; } }
-@media (max-width: 1049.98px) {
+@media (max-width: 991.98px) {
   .navbar-expand-lg > .container,
   .navbar-expand-lg > .container-fluid,
   .navbar-expand-lg > .container-sm,
@@ -3283,7 +3283,7 @@ input[type="button"].btn-block {
   .navbar-expand-lg > .container-xl {
     padding-right: 0;
     padding-left: 0; } }
-@media (min-width: 1050px) {
+@media (min-width: 992px) {
   .navbar-expand-lg {
     flex-flow: row nowrap;
     justify-content: flex-start; }
@@ -4040,7 +4040,7 @@ input[type="button"].btn-block {
       .list-group-horizontal-md > .list-group-item + .list-group-item.active {
         margin-left: -1px;
         border-left-width: 1px; } }
-@media (min-width: 1050px) {
+@media (min-width: 992px) {
   .list-group-horizontal-lg {
     flex-direction: row; }
     .list-group-horizontal-lg > .list-group-item:first-child {
@@ -4370,7 +4370,7 @@ a.close.disabled {
 
   .modal-sm {
     max-width: 300px; } }
-@media (min-width: 1050px) {
+@media (min-width: 992px) {
   .modal-lg,
   .modal-xl {
     max-width: 800px; } }
@@ -5033,7 +5033,7 @@ button.bg-dark:focus {
 
   .d-md-inline-flex {
     display: inline-flex !important; } }
-@media (min-width: 1050px) {
+@media (min-width: 992px) {
   .d-lg-none {
     display: none !important; }
 
@@ -5454,7 +5454,7 @@ button.bg-dark:focus {
 
   .align-self-md-stretch {
     align-self: stretch !important; } }
-@media (min-width: 1050px) {
+@media (min-width: 992px) {
   .flex-lg-row {
     flex-direction: row !important; }
 
@@ -5685,7 +5685,7 @@ button.bg-dark:focus {
 
   .float-md-none {
     float: none !important; } }
-@media (min-width: 1050px) {
+@media (min-width: 992px) {
   .float-lg-left {
     float: left !important; }
 
@@ -6858,7 +6858,7 @@ button.bg-dark:focus {
   .ml-md-auto,
   .mx-md-auto {
     margin-left: auto !important; } }
-@media (min-width: 1050px) {
+@media (min-width: 992px) {
   .m-lg-0 {
     margin: 0 !important; }
 
@@ -7597,7 +7597,7 @@ button.bg-dark:focus {
 
   .text-md-center {
     text-align: center !important; } }
-@media (min-width: 1050px) {
+@media (min-width: 992px) {
   .text-lg-left {
     text-align: left !important; }
 
@@ -7768,10 +7768,10 @@ a.text-dark:hover, a.text-dark:focus {
   @page {
     size: a3; }
   body {
-    min-width: 1050px !important; }
+    min-width: 992px !important; }
 
   .container {
-    min-width: 1050px !important; }
+    min-width: 992px !important; }
 
   .navbar {
     display: none; }
@@ -7801,4 +7801,4 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6; } }
 
-/*# sourceMappingURL=bootstrap2.css.map */
+/*# sourceMappingURL=bootstrap.css.map */

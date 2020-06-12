@@ -274,3 +274,8 @@ html {
 .hamburger{
   width: 50px;
 }
+
+.all-instruments{
+  width:90%;
+  margin-right: -10px;
+}
