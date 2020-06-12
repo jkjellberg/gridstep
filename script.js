@@ -128,10 +128,12 @@ document.body.addEventListener("pointerdown", (e) => {
   document.body.releasePointerCapture(e.pointerId); //
 });
 async function loadGrid(svg_file) {
-  //load the svg-pattern into the file
+  //clears the old pattern and loads the new svg-pattern into the file
+  $("#pattern_container").empty();
   $("#pattern_container").load(
     "https://raw.githubusercontent.com/jkjellberg/gridstep/svg-selector/patterns/" +
-      svg_file
+      svg_file,
+    connectGrid()
   );
   return;
 }
@@ -139,10 +141,10 @@ function connectGrid() {
   // makes it possible to start the swipe outside of the pattern
 
   // selects all shapes with class st0 (all the steps)
-  let trigs = document.querySelectorAll(".st0");
+  trigs = document.querySelectorAll(".st0");
   console.log(trigs);
   // selects all shapes with class st0 (all the steps)
-  let step_indicator = document.querySelectorAll(".step_indicator");
+  step_indicator = document.querySelectorAll(".step_indicator");
 
   // adds eventlisteners to all steps
   trigs.forEach((trig, i) => {
@@ -173,11 +175,12 @@ function connectGrid() {
 async function paintGrid(svg_file) {
   await loadGrid(svg_file);
   console.log("hej");
-  connectGrid();
+  //connectGrid();
   console.log(trigs);
 }
 
-paintGrid("1.html");
+paintGrid("2.html");
+console.log("klar");
 
 // Initialize the time, will call function 'repeat' each 16ths note. 120 bpm by default.
 Tone.Transport.scheduleRepeat(repeat, "16n");
