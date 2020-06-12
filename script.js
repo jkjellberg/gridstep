@@ -133,20 +133,12 @@ function loadGrid(svg_file) {
 function connectGrid() {
   // makes it possible to start the swipe outside of the pattern
 
-<<<<<<< HEAD
   $(document).on("touchStart mouseDown", ".st0", function (e) {
-=======
-  $(document).on("pointerDown", ".st0", function (e) {
->>>>>>> f2bd3ff37ffa185719914980b6d184342f7e8106
     $(this).releasePointerCapture(e.pointerId);
   });
 
   $(document).on("pointerenter", ".st0", function () {
     let i = $(".st0").index(this);
-<<<<<<< HEAD
-=======
-    console.log(i);
->>>>>>> f2bd3ff37ffa185719914980b6d184342f7e8106
     $(this).toggleClass("checked");
     $(".step_indicator").eq(i).toggleClass("checked");
     instruments[active_instrument_index].steps[i] = !instruments[
