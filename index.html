@@ -18,7 +18,15 @@
   <body>
 
 
+    <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
     </div>
+
+
 
     <div class="topdiv row no-gutters">
 
@@ -59,7 +67,7 @@
         </div> !-->
       </div>
       </div>
-      <div class="slidecontainer col-lg-3 col-sm-6 borders pt-4">
+      <div class="slidecontainer col-lg-2 col-sm-6 borders pt-4">
         <div class="bpm-output">
           <div class="bpm_amount_container">
             <div id="bpm_amount" class="left">120</div>
@@ -77,6 +85,17 @@
           id="bpm_slider"
         />
       </div>
+
+
+      <div class="hamburgerdiv">
+      <span onclick="openNav()">
+        <svg class="hamburger" width="120" height="87" viewBox="0 0 152 87" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect y="35" width="130" height="17" rx="8.5" fill="#C4C4C4"/>
+            <rect width="130" height="17" rx="8.5" fill="#C4C4C4"/>
+            <rect y="70" width="130" height="17" rx="8.5" fill="#C4C4C4"/>
+        </svg>
+      </span>
+    </div>
     </div>
 
 
@@ -300,6 +319,7 @@
     </svg>
 
     <script src="script.js"></script>
+    <script src="meny-js.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
