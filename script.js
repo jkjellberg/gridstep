@@ -119,6 +119,10 @@ instr_buttons.forEach((item, i) => {
 
 //Lets the user start the 'swipe' outside of the grid as long as they start it in the body
 document.body.addEventListener("pointerdown", (e) => {
+  console.log("body start:");
+  console.log(document.body);
+  console.log(e);
+  console.log("body slut!");
   document.body.releasePointerCapture(e.pointerId); //
 });
 function loadGrid(svg_file) {
@@ -133,8 +137,10 @@ function loadGrid(svg_file) {
 function connectGrid() {
   // makes it possible to start the swipe outside of the pattern
 
-  $(document).on("touchStart mouseDown", ".st0", function (e) {
-    $(this).releasePointerCapture(e.pointerId);
+  $(document).on("pointerdown", ".st0", function (e) {
+    console.log(e.originalEvent);
+    console.log($(this));
+    $(this).releasePointerCapture(e.originalEvent.pointerId);
   });
 
   $(document).on("pointerenter", ".st0", function () {
