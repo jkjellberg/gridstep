@@ -252,8 +252,12 @@ html {
 }
 
 .menu-row{
-  height:650px;
+  max-height: calc(100vh);
+  /*height: 100%; /* 100% Full-height */
+  overflow-y: scroll!important;
+  -webkit-overflow-scrolling: touch!important;
 }
+
 .hamburgerdiv{
 
   position: absolute;
