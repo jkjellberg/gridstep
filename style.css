@@ -120,7 +120,7 @@ body {
 
 html {
 
-  overflow: hidden;
+
 }
 
 .instrument-container {
@@ -172,6 +172,7 @@ html {
 
 #pattern_container {
   text-align: center;
+  overflow: hidden;
 }
 
 .dropbtn {
