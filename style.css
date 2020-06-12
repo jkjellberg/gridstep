@@ -112,6 +112,7 @@ body {
   padding-right: 20px;
   font-family: "Work Sans", sans-serif;
   height: 1000px;
+    overflow: hidden;
 }
 
 #svg_background {
@@ -172,7 +173,7 @@ html {
 
 #pattern_container {
   text-align: center;
-  overflow: hidden;
+
 }
 
 .dropbtn {
