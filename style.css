@@ -168,6 +168,11 @@ html {
 
 .instrument-section {
 }
+
+#pattern_container {
+  text-align: center;
+}
+
 .dropbtn {
   background-color: #3498db;
   color: white;

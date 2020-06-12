@@ -125,42 +125,53 @@ instr_buttons.forEach((item, i) => {
 document.body.addEventListener("pointerdown", (e) => {
   document.body.releasePointerCapture(e.pointerId); //
 });
-// does the same thing with the svg background as with the body.
-const svg_background = document.getElementById("svg_background");
-svg_background.addEventListener("pointerdown", (e) => {
-  svg_background.releasePointerCapture(e.pointerId); //
-});
 
-// selects all shapes with class st0 (all the steps)
-const trigs = document.querySelectorAll(".st0");
+function paintGrid(svg_file) {
+  //load the svg-pattern into the file
+  $("#pattern_container").load("./patterns/" + svg_file);
 
-// selects all shapes with class st0 (all the steps)
-const step_indicator = document.querySelectorAll(".step_indicator");
+  // makes it possible to start the swipe outside of the pattern
+  document
+    .getElementById("svg_background")
+    .addEventListener("pointerdown", (e) => {
+      getElementById("svg_background").releasePointerCapture(e.pointerId); //
+    });
 
-// adds eventlisteners to all steps
-trigs.forEach((trig, i) => {
-  //adds a pointer down listerner to each step to be able to release the target
-  trig.addEventListener("pointerdown", (e) => {
-    //console.log("down");
-    //console.log("attempt release implicit capture");
-    trig.releasePointerCapture(e.pointerId); // <- Important!
+  // selects all shapes with class st0 (all the steps)
+  let trigs = document.querySelectorAll(".st0");
+
+  // selects all shapes with class st0 (all the steps)
+  let step_indicator = document.querySelectorAll(".step_indicator");
+
+  // adds eventlisteners to all steps
+  trigs.forEach((trig, i) => {
+    //adds a pointer down listerner to each step to be able to release the target
+    trig.addEventListener("pointerdown", (e) => {
+      //console.log("down");
+      //console.log("attempt release implicit capture");
+      trig.releasePointerCapture(e.pointerId); // <- Important!
+    });
+
+    //adds a pointerenter event listener to all steps
+    trig.addEventListener("pointerenter", (e) => {
+      //console.log("enter");
+      // add the class checked if mouse/fingers enters shape (doesn't care if mouse is down atm...)
+      trig.classList.toggle("checked");
+      step_indicator[i].classList.toggle("checked");
+      instruments[active_instrument_index].steps[i] = !instruments[
+        active_instrument_index
+      ].steps[i];
+    });
+    // we don't need this at the moment, but adds a listener for when the finger/pointer leaves the shape
+    //trig.addEventListener("pointerleave", (e) => {
+    //console.log("leave");
+    //});
   });
 
-  //adds a pointerenter event listener to all steps
-  trig.addEventListener("pointerenter", (e) => {
-    //console.log("enter");
-    // add the class checked if mouse/fingers enters shape (doesn't care if mouse is down atm...)
-    trig.classList.toggle("checked");
-    step_indicator[i].classList.toggle("checked");
-    instruments[active_instrument_index].steps[i] = !instruments[
-      active_instrument_index
-    ].steps[i];
-  });
-  // we don't need this at the moment, but adds a listener for when the finger/pointer leaves the shape
-  //trig.addEventListener("pointerleave", (e) => {
-  //console.log("leave");
-  //});
-});
+  return [trigs, step_indicator];
+}
+
+let [trigs, step_indicator] = paintGrid("1.html");
 
 // Initialize the time, will call function 'repeat' each 16ths note. 120 bpm by default.
 Tone.Transport.scheduleRepeat(repeat, "16n");
