@@ -188,6 +188,7 @@ html {
   transition: 0.5s;
   padding-top: 60px;
   /*touch-action: auto !important;*/
+  overflow-y: auto;
 }
 
 .sidenav a {
