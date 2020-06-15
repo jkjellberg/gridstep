@@ -176,7 +176,7 @@ html {
 
 #pattern_container {
   text-align: center;
-  /*height: 100vh;*/
+  height: 100vh;
   padding-top: 30px;
   padding-bottom: 14%;
   background-color: white;
@@ -244,6 +244,13 @@ html {
 .grid {
   max-height: 100%;
 }
+.grid-div {
+  max-height: 100%;
+  /*  padding-top: 30px;
+  border: 1px solid black;*/
+}
+
+.
 
 /* The side navigation menu */
 .sidenav {
