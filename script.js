@@ -216,6 +216,9 @@ document.body.addEventListener("pointerdown", (e) => {
 $("#pattern_container").on("pointerdown", function (e) {
   $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
 });
+$(".topdiv").on("pointerdown", function (e) {
+  $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+});
 
 async function loadGrid(svg_file) {
   $("#pattern_container").empty();
