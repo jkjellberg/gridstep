@@ -190,8 +190,6 @@ html {
   /*transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
   overflow-y: auto !important;
   -webkit-overflow-scrolling: touch !important;
-  overflow: auto;
-  white-space: nowrap;
 }
 
 /* The navigation menu links */
