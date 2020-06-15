@@ -111,7 +111,7 @@ $("#changeSound").click(function (e) {
     );
   });
 });
-//fullScreen buttons
+//fullScreen button
 $("#fullScreen").click(function (e) {
   let elem = document.documentElement;
   if (elem.requestFullscreen) {
