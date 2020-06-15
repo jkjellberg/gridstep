@@ -7,50 +7,78 @@ document.documentElement.addEventListener("mousedown", () => {
 let index = 0; // keeps track on wich step the the stepsequencer are at
 let previous_step = 0; //keeps track on the previous step
 let active_instrument_index = 0; //keeps track on wich instrument that is active
-let grids = [1, 2, 3, 4];
+const grids = [1, 2, 3, 4];
 let activeGrid = 0;
+const drumkits = ["808", "909", "LinnDrum"];
+const sampleNames = [
+  "kick.wav",
+  "snare.wav",
+  "clap.wav",
+  "lt.wav",
+  "ht.wav",
+  "ch.wav",
+  "oh.wav",
+  "cymbal.wav",
+];
+let activeDrumkitIndex = 0;
 
 var sample_url =
-  "https://raw.githubusercontent.com/jkjellberg/gridstep/master/samples/909/";
+  "https://raw.githubusercontent.com/jkjellberg/gridstep/master/samples/";
 // an array of instruments, needs to be the same as the amount of divs with class instrument_switcher
 const instruments = [
   {
-    synth: new Tone.Player(sample_url + "kick.wav"),
+    synth: new Tone.Player(
+      sample_url + drumkits[activeDrumkitIndex] + "/kick.wav"
+    ),
     note: "c2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "snare.wav"),
+    synth: new Tone.Player(
+      sample_url + drumkits[activeDrumkitIndex] + "/snare.wav"
+    ),
     note: "g2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "clap.wav"),
+    synth: new Tone.Player(
+      sample_url + drumkits[activeDrumkitIndex] + "/clap.wav"
+    ),
     note: "c4",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "lt.wav"),
+    synth: new Tone.Player(
+      sample_url + drumkits[activeDrumkitIndex] + "/lt.wav"
+    ),
     note: "d#4",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "ht.wav"),
+    synth: new Tone.Player(
+      sample_url + drumkits[activeDrumkitIndex] + "/ht.wav"
+    ),
     note: "g5",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "ch.wav"),
+    synth: new Tone.Player(
+      sample_url + drumkits[activeDrumkitIndex] + "/ch.wav"
+    ),
     note: "g5",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "oh.wav"),
+    synth: new Tone.Player(
+      sample_url + drumkits[activeDrumkitIndex] + "/oh.wav"
+    ),
     note: "g5",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "cymbal.wav"),
+    synth: new Tone.Player(
+      sample_url + drumkits[activeDrumkitIndex] + "/cymbal.wav"
+    ),
     note: "g5",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
@@ -70,9 +98,13 @@ const start_stop_btn = document.getElementById("start-stop");
 $("#changePattern").click(function (e) {
   activeGrid = (activeGrid + 1) % grids.length;
   loadGrid(grids[activeGrid] + ".html");
-  //setTimeout(() => {
-  //  repaint_trigs();
-  //}, 200);
+
+  activeDrumkitIndex = (activeDrumkitIndex + 1) % drumkits.length;
+  instruments.forEach((instrument, i) => {
+    instrument.synth.load(
+      sample_url + drumkits[activeDrumkitIndex] + "/" + sampleNames[i]
+    );
+  });
 });
 
 start_stop_btn.addEventListener("click", (e) => {
