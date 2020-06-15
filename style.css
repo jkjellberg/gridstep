@@ -16,6 +16,7 @@
   fill: #cccccc;
   opacity: 0.5;
   mix-blend-mode: darken;
+  cursor:pointer;  
 }
 .step_indicator {
   fill: #cccccc;
