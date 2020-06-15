@@ -11,7 +11,7 @@ let grids = [1, 2, 3, 4];
 let activeGrid = 0;
 
 var sample_url =
-  "https://raw.githubusercontent.com/jkjellberg/gridstep/master/samples/808/";
+  "https://raw.githubusercontent.com/jkjellberg/gridstep/master/samples/909/";
 // an array of instruments, needs to be the same as the amount of divs with class instrument_switcher
 const instruments = [
   {
@@ -20,7 +20,7 @@ const instruments = [
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "sd.wav"),
+    synth: new Tone.Player(sample_url + "snare.wav"),
     note: "g2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
@@ -30,12 +30,12 @@ const instruments = [
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "tl.wav"),
+    synth: new Tone.Player(sample_url + "lt.wav"),
     note: "d#4",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
-    synth: new Tone.Player(sample_url + "th.wav"),
+    synth: new Tone.Player(sample_url + "ht.wav"),
     note: "g5",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
