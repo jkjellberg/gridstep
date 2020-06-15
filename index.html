@@ -62,23 +62,25 @@
             <div class="square_button instrument_switcher">CLAP</div>
             <div class="square_button instrument_switcher">LT</div>
 
-            <!--</div>
+              <!--</div>
         <div class="instrument-section col-lg-3 col-md-12 col-sm-12 borders pt-4">-->
 
-            <div class="square_button instrument_switcher">HT</div>
-            <div class="square_button instrument_switcher">CH</div>
-            <div class="square_button instrument_switcher">OH</div>
-            <div class="square_button instrument_switcher">CYM</div>
+              <div class="square_button instrument_switcher">HT</div>
+              <div class="square_button instrument_switcher">CH</div>
+              <div class="square_button instrument_switcher">OH</div>
+              <div class="square_button instrument_switcher">CYM</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="start-clear-wrapper col-lg-2 col-sm-6 borders pt-4">
-        <div class="start-clear-row row no-gutters justify-content-sm-start">
-          <div id="start-stop" class="square_button">START</div>
-          <div id="clear-btn" class="square_button">CLEAR</div>
-          <div id="changePattern" class="square_button">LAYOUT</div>
-          <!--<div class="dropdown">
+        <div class="start-clear-wrapper col-lg-2 col-sm-6 borders pt-4">
+          <div class="start-clear-row row no-gutters justify-content-sm-start">
+            <div id="start-stop" class="square_button">START</div>
+            <div id="clear-btn" class="square_button">CLEAR</div>
+            <div id="changePattern" class="square_button">LAYOUT: 1</div>
+            <div id="changeSound" class="square_button">KIT: 808</div>
+            <div id="fullScreen" class="square_button">Fullscreen</div>
+            <!--<div class="dropdown">
           <button onclick="myFunction()" class="dropbtn">
             SOUND
           </button>
@@ -88,47 +90,47 @@
             <a href="#contact">909</a>
           </div>
         </div> !-->
-        </div>
-      </div>
-      <div class="slidecontainer col-lg-2 col-sm-6 borders pt-4">
-        <div class="bpm-output">
-          <div class="bpm_amount_container">
-            <div id="bpm_amount" class="left">120</div>
-          </div>
-          <div class="bpm-container">
-            <div class="right">BPM</div>
           </div>
         </div>
-        <input
-          type="range"
-          min="60"
-          max="240"
-          value="120"
-          class="slider"
-          id="bpm_slider"
-        />
-      </div>
-      <div class="col-lg-1"></div>
+        <div class="slidecontainer col-lg-2 col-sm-6 borders pt-4">
+          <div class="bpm-output">
+            <div class="bpm_amount_container">
+              <div id="bpm_amount" class="left">120</div>
+            </div>
+            <div class="bpm-container">
+              <div class="right">BPM</div>
+            </div>
+          </div>
+          <input
+            type="range"
+            min="60"
+            max="240"
+            value="120"
+            class="slider"
+            id="bpm_slider"
+          />
+        </div>
+        <div class="col-lg-1"></div>
 
-      <div class="hamburgerdiv">
-        <span onclick="openNav()">
-          <svg
-            class="hamburger"
-            width="50"
-            height="60"
-            viewBox="0 0 100 5"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect y="15" width="50" height="8" rx="6" fill="#C4C4C4" />
-            <rect width="50" height="8" rx="6" fill="#C4C4C4" />
-            <rect y="30" width="50" height="8" rx="6" fill="#C4C4C4" />
-          </svg>
-        </span>
+        <div class="hamburgerdiv">
+          <span onclick="openNav()">
+            <svg
+              class="hamburger"
+              width="50"
+              height="60"
+              viewBox="0 0 100 5"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect y="15" width="50" height="8" rx="6" fill="#C4C4C4" />
+              <rect width="50" height="8" rx="6" fill="#C4C4C4" />
+              <rect y="30" width="50" height="8" rx="6" fill="#C4C4C4" />
+            </svg>
+          </span>
+        </div>
       </div>
+      <div id="pattern_container"></div>
     </div>
-    <div id="pattern_container" class="borders"></div>
-  </div>
     <script src="script.js"></script>
     <script src="meny-js.js"></script>
     <script src="js/bootstrap.min.js"></script>

@@ -223,8 +223,12 @@ html {
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
@@ -280,8 +284,28 @@ html {
   margin-right: -10px;
 }
 
-.main-container{
+.main-container {
   touch-action: none;
   height:100%;
 
+}
+
+/* Chrome, Safari and Opera syntax */
+:-webkit-full-screen {
+  background-color: white;
+}
+
+/* Firefox syntax */
+:-moz-full-screen {
+  background-color: white;
+}
+
+/* IE/Edge syntax */
+:-ms-fullscreen {
+  background-color: white;
+}
+
+/* Standard syntax */
+:fullscreen {
+  background-color: white;
 }
