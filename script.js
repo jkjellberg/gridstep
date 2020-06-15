@@ -97,14 +97,35 @@ const start_stop_btn = document.getElementById("start-stop");
 //change-pattern-button
 $("#changePattern").click(function (e) {
   activeGrid = (activeGrid + 1) % grids.length;
+  $("#changePattern").html("LAYOUT: " + (activeGrid + 1));
   loadGrid(grids[activeGrid] + ".html");
+});
 
+//changeSound button
+$("#changeSound").click(function (e) {
   activeDrumkitIndex = (activeDrumkitIndex + 1) % drumkits.length;
+  $("#changeSound").html("KIT: " + drumkits[activeDrumkitIndex]);
   instruments.forEach((instrument, i) => {
     instrument.synth.load(
       sample_url + drumkits[activeDrumkitIndex] + "/" + sampleNames[i]
     );
   });
+});
+//fullScreen buttons
+$("#fullScreen").click(function (e) {
+  let elem = document.documentElement;
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) {
+    /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) {
+    /* Chrome, Safari and Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) {
+    /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
 });
 
 start_stop_btn.addEventListener("click", (e) => {
