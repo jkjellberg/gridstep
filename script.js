@@ -251,7 +251,7 @@ function connectGrid() {
   $(document).on("pointerenter", ".st0", function () {
     let i = $(".st0").index(this);
     $(this).toggleClass("checked");
-    //console.log(i + " activated");
+    alert(i + " activated");
     $(".step_indicator").eq(i).toggleClass("checked");
     instruments[active_instrument_index].steps[i] = !instruments[
       active_instrument_index
