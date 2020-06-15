@@ -244,7 +244,7 @@ function connectGrid() {
     $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
   });
 
-  $(document).on("pointerdown click", ".st0", function (e) {
+  $(document).on("pointerdown", ".st0", function (e) {
     $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
     e.originalEvent.preventDefault();
   });
@@ -252,11 +252,12 @@ function connectGrid() {
   $(document).on("pointerenter", ".st0", function () {
     let i = $(".st0").index(this);
     $(this).toggleClass("checked");
-    alert(i + " activated");
+    //alert(i + " activated");
     $(".step_indicator").eq(i).toggleClass("checked");
     instruments[active_instrument_index].steps[i] = !instruments[
       active_instrument_index
     ].steps[i];
+    return false;
   });
 }
 
