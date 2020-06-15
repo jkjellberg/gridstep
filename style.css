@@ -126,7 +126,6 @@ html {
 
 .instrument-container {
   padding-top: 30px;
-
 }
 .instrument_switcher {
   width: 50px;
@@ -159,7 +158,7 @@ html {
 
 .container {
   text-align: center;
-  height:100%;
+  height: 100%;
 }
 
 .borders {
@@ -175,44 +174,44 @@ html {
 
 #pattern_container {
   text-align: center;
-  height:100vh;
-  padding-bottom:6%;
+  height: 100vh;
+  padding-bottom: 6%;
 }
 
 @media only screen and (max-width: 1200px) {
-  #pattern_container{
-    padding-bottom:15%;
+  #pattern_container {
+    padding-bottom: 15%;
   }
 }
 
 @media only screen and (max-width: 1000px) {
-  #pattern_container{
-    padding-bottom:18%;
+  #pattern_container {
+    padding-bottom: 18%;
   }
 }
 
 @media only screen and (max-width: 800px) {
-  #pattern_container{
-    padding-bottom:26%;
+  #pattern_container {
+    padding-bottom: 26%;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  #pattern_container{
-    padding-bottom:40%;
+  #pattern_container {
+    padding-bottom: 40%;
   }
 }
 
 @media only screen and (max-width: 800px) {
-  #pattern_container{
-    padding-bottom:0%;
+  #pattern_container {
+    padding-bottom: 0%;
   }
-  .grid{
-    width:100%;
+  .grid {
+    width: 100%;
   }
 }
-.grid{
-  max-height:100%;
+.grid {
+  max-height: 100%;
 }
 
 /* The side navigation menu */
@@ -286,6 +285,9 @@ html {
   width: 350px;
   height: 6000px;
 }
+.menu-categories .active {
+  color: #f1f1f1;
+}
 
 .menu-row {
   height: 100%;
@@ -316,8 +318,7 @@ html {
 
 .main-container {
   touch-action: none;
-  height:100%;
-
+  height: 100%;
 }
 
 /* Chrome, Safari and Opera syntax */
