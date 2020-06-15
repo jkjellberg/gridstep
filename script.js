@@ -97,35 +97,8 @@ const start_stop_btn = document.getElementById("start-stop");
 //change-pattern-button
 $("#changePattern").click(function (e) {
   activeGrid = (activeGrid + 1) % grids.length;
-  $("#changePattern").html("LAYOUT: " + (activeGrid + 1));
+  //$("#changePattern").html("LAYOUT: " + (activeGrid + 1));
   loadGrid(grids[activeGrid] + ".html");
-});
-
-//changeSound button
-$("#changeSound").click(function (e) {
-  activeDrumkitIndex = (activeDrumkitIndex + 1) % drumkits.length;
-  $("#changeSound").html("KIT: " + drumkits[activeDrumkitIndex]);
-  instruments.forEach((instrument, i) => {
-    instrument.synth.load(
-      sample_url + drumkits[activeDrumkitIndex] + "/" + sampleNames[i]
-    );
-  });
-});
-//fullScreen button
-$("#fullScreen").click(function (e) {
-  let elem = document.documentElement;
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.mozRequestFullScreen) {
-    /* Firefox */
-    elem.mozRequestFullScreen();
-  } else if (elem.webkitRequestFullscreen) {
-    /* Chrome, Safari and Opera */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) {
-    /* IE/Edge */
-    elem.msRequestFullscreen();
-  }
 });
 
 start_stop_btn.addEventListener("click", (e) => {
@@ -171,6 +144,52 @@ instr_buttons.forEach((item, i) => {
     repaint_trigs();
   });
 });
+
+function changeNextDrumKit() {
+  activeDrumkitIndex = (activeDrumkitIndex + 1) % drumkits.length;
+  changeDrumKit(active_instrument_index);
+}
+
+function changeDrumKit(index) {
+  instruments.forEach((instrument, i) => {
+    instrument.synth.load(sample_url + drumkits[index] + "/" + sampleNames[i]);
+  });
+  activeDrumkitIndex = index;
+}
+
+/* View in fullscreen */
+function openFullscreen() {
+  let elem = document.documentElement;
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) {
+    /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) {
+    /* Chrome, Safari and Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) {
+    /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+}
+
+/* Close fullscreen */
+function closeFullscreen() {
+  let elem = document.documentElement;
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    /* Firefox */
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    /* Chrome, Safari and Opera */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    /* IE/Edge */
+    document.msExitFullscreen();
+  }
+}
 
 function repaint_trigs() {
   //repaints the trigs to match the active instruments
