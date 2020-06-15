@@ -16,7 +16,7 @@
   fill: #cccccc;
   opacity: 0.5;
   mix-blend-mode: darken;
-  cursor:pointer;  
+  cursor:pointer;
 }
 .step_indicator {
   fill: #cccccc;
@@ -242,6 +242,7 @@ html {
 .grid {
   max-height: 100%;
   padding-top:30px;
+  /**/
 }
 
 /* The side navigation menu */
