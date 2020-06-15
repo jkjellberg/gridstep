@@ -246,6 +246,7 @@ function connectGrid() {
 
   $(document).on("pointerdown click", ".st0", function (e) {
     $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+    e.originalEvent.preventDefault();
   });
 
   $(document).on("pointerenter", ".st0", function () {
