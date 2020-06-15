@@ -163,11 +163,11 @@ html {
 }
 
 .borders {
-  border: 1px black solid;
+  border: 0px black solid;
 }
 
 .border {
-  border: 1px blue solid;
+  border: 0px blue solid;
 }
 
 .instrument-section {
@@ -177,10 +177,40 @@ html {
   text-align: center;
   height:100vh;
   padding-bottom:6%;
-
-
 }
 
+@media only screen and (max-width: 1200px) {
+  #pattern_container{
+    padding-bottom:15%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #pattern_container{
+    padding-bottom:18%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  #pattern_container{
+    padding-bottom:26%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #pattern_container{
+    padding-bottom:40%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  #pattern_container{
+    padding-bottom:0%;
+  }
+  .grid{
+    width:100%;
+  }
+}
 .grid{
   max-height:100%;
 }
