@@ -127,7 +127,6 @@ html {
 
 .instrument-container {
   padding-top: 30px;
-
 }
 .instrument_switcher {
   width: 50px;
@@ -160,7 +159,7 @@ html {
 
 .container {
   text-align: center;
-  height:100%;
+  height: 100%;
 }
 
 .borders {
@@ -176,73 +175,71 @@ html {
 
 #pattern_container {
   text-align: center;
-  height:100vh;
-  padding-bottom:14%;
+  height: 100vh;
+  padding-bottom: 14%;
 }
 
 @media only screen and (max-width: 1200px) {
-  #pattern_container{
-    padding-bottom:24%;
+  #pattern_container {
+    padding-bottom: 24%;
   }
 }
 
 @media only screen and (max-width: 1000px) {
-  #pattern_container{
-    padding-bottom:23%;
+  #pattern_container {
+    padding-bottom: 23%;
   }
 }
 
 @media only screen and (max-width: 880px) {
-  #pattern_container{
-    padding-bottom:25%;
+  #pattern_container {
+    padding-bottom: 25%;
   }
 }
 
 @media only screen and (max-width: 800px) {
-  #pattern_container{
-    padding-bottom:26%;
+  #pattern_container {
+    padding-bottom: 26%;
   }
 }
 
-
 @media only screen and (max-width: 650px) {
-  #pattern_container{
-    padding-bottom:52%;
+  #pattern_container {
+    padding-bottom: 52%;
     width: 100%;
   }
-
 }
 
 @media only screen and (max-width: 508px) {
-  #pattern_container{
-    padding-bottom:42%;
+  #pattern_container {
+    padding-bottom: 42%;
     height: 80%;
   }
 }
 
 @media only screen and (max-width: 470px) {
-  #pattern_container{
-    padding-bottom:50%;
+  #pattern_container {
+    padding-bottom: 50%;
     height: 80%;
   }
 }
 
 @media only screen and (max-width: 400px) {
-  #pattern_container{
-    padding-bottom:60%;
+  #pattern_container {
+    padding-bottom: 60%;
     height: 80%;
   }
 }
 
 @media only screen and (max-width: 352px) {
-  #pattern_container{
-    padding-bottom:60%;
+  #pattern_container {
+    padding-bottom: 60%;
     height: 80%;
   }
 }
 
-.grid{
-  max-height:100%;
+.grid {
+  max-height: 100%;
 }
 
 /* The side navigation menu */
@@ -316,6 +313,9 @@ html {
   width: 350px;
   height: 6000px;
 }
+.menu-categories .active {
+  color: #f1f1f1;
+}
 
 .menu-row {
   height: 100%;
@@ -346,8 +346,7 @@ html {
 
 .main-container {
   touch-action: none;
-  height:100%;
-
+  height: 100%;
 }
 
 /* Chrome, Safari and Opera syntax */

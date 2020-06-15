@@ -96,7 +96,11 @@ const start_stop_btn = document.getElementById("start-stop");
 
 //change-pattern-button
 $("#changePattern").click(function (e) {
+  $(".layout-link").eq(activeGrid).removeClass("active");
+
   activeGrid = (activeGrid + 1) % grids.length;
+
+  $(".layout-link").eq(activeGrid).addClass("active");
   //$("#changePattern").html("LAYOUT: " + (activeGrid + 1));
   loadGrid(grids[activeGrid] + ".html");
 });
