@@ -246,13 +246,12 @@ html {
 /* The side navigation menu */
 .sidenav {
   height: 100%;
-  width: 0;
   position: fixed;
   z-index: 1;
   top: 0;
-  left: 0;
+  right: 0;
   background-color: #111;
-  overflow-x: hidden;
+  overflow-x: hidden!important;
   /*transition: 0.5s;*/
   padding-top: 60px;
   /*touch-action: auto !important;*/
@@ -325,7 +324,8 @@ html {
 
 .overflow-scroll {
   overflow-y: scroll !important;
-  -webkit-overflow-scrolling: touch !important;
+  /*-webkit-overflow-scrolling: touch !important;*/
+  overflow-x: hidden;
   height: 100%;
 }
 
