@@ -11,7 +11,7 @@ let grids = [1, 2, 3, 4];
 let activeGrid = 0;
 
 var sample_url =
-  "https://raw.githubusercontent.com/jkjellberg/gridstep/master/samples/808/";
+  "https://raw.githubusercontent.com/jkjellberg/gridstep/master/samples/909/";
 // an array of instruments, needs to be the same as the amount of divs with class instrument_switcher
 const instruments = [
   {
