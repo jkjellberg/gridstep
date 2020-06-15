@@ -1,4 +1,4 @@
-/* {
+/**{
   touch-action: none;
 }*/
 
@@ -112,6 +112,7 @@ body {
   padding-right: 20px;
   font-family: "Work Sans", sans-serif;
   height: 100%;
+  overflow: hidden;
   /**/
 }
 
@@ -176,23 +177,20 @@ html {
 
 /* The side navigation menu */
 .sidenav {
-  max-height: calc(100vh);
-  /*height: 100%; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
-  top: 0 !important; /* Stay at the top */
-  bottom: 0;
-  right: 0;
-  background-color: #111; /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  /*transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-  overflow-y: auto !important;
-  -webkit-overflow-scrolling: touch !important;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  /*touch-action: auto !important;*/
+  overflow-y: auto;
 }
 
-/* The navigation menu links */
 .sidenav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
@@ -202,12 +200,10 @@ html {
   transition: 0.3s;
 }
 
-/* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
   color: #f1f1f1;
 }
 
-/* Position and style the close button (top right corner) */
 .sidenav .closebtn {
   position: absolute;
   top: 0;
@@ -216,10 +212,9 @@ html {
   margin-left: 50px;
 }
 
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
-  transition: margin-left 0.5s;
-  padding: 20px;
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
