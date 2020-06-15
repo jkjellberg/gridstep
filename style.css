@@ -269,3 +269,7 @@ html {
   width: 90%;
   margin-right: -10px;
 }
+
+.main-container{
+  touch-action: none;
+}
