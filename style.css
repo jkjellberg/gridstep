@@ -16,7 +16,7 @@
   fill: #cccccc;
   opacity: 0.5;
   mix-blend-mode: darken;
-  cursor:pointer;  
+  cursor: pointer;
 }
 .step_indicator {
   fill: #cccccc;
@@ -177,7 +177,9 @@ html {
 #pattern_container {
   text-align: center;
   height: 100vh;
+  padding-top: 30px;
   padding-bottom: 14%;
+  background-color: white;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -241,13 +243,12 @@ html {
 
 .grid {
   max-height: 100%;
-  padding-top:30px;
 }
 
 /* The side navigation menu */
 .sidenav {
   height: 100%;
-  width:0;
+  width: 0;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -313,7 +314,6 @@ html {
   padding-left: 50px;
   padding-bottom: 40px;
   width: 350px;
-
 }
 .menu-categories .active {
   color: #f1f1f1;

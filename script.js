@@ -212,14 +212,28 @@ function repaint_trigs() {
 //Lets the user start the 'swipe' outside of the grid as long as they start it in the body
 document.body.addEventListener("pointerdown", (e) => {
   document.body.releasePointerCapture(e.pointerId); //
+  console.log("body");
 });
 $("#pattern_container").on("pointerdown", function (e) {
   $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+  e.originalEvent.preventDefault();
+  console.log("pattern-container");
 });
 $(".topdiv").on("pointerdown", function (e) {
   $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+  e.originalEvent.preventDefault();
+  console.log("topdiv");
 });
-
+$(".main-container").on("pointerdown", function (e) {
+  $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+  e.originalEvent.preventDefault();
+  console.log("main-container");
+});
+$("svg").on("pointerdown", function (e) {
+  $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+  e.originalEvent.preventDefault();
+  console.log("grid");
+});
 async function loadGrid(svg_file) {
   $("#pattern_container").empty();
   $("#pattern_container").load(
@@ -246,7 +260,7 @@ function connectGrid() {
 
   $(document).on("pointerdown", ".st0", function (e) {
     $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
-    e.originalEvent.preventDefault();
+    //e.originalEvent.preventDefault();
   });
 
   $(document).on("pointerenter", ".st0", function () {
