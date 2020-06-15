@@ -213,6 +213,9 @@ function repaint_trigs() {
 document.body.addEventListener("pointerdown", (e) => {
   document.body.releasePointerCapture(e.pointerId); //
 });
+$("#pattern_container").on("pointerdown", function (e) {
+  $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+});
 
 async function loadGrid(svg_file) {
   $("#pattern_container").empty();
@@ -245,7 +248,7 @@ function connectGrid() {
   $(document).on("pointerenter", ".st0", function () {
     let i = $(".st0").index(this);
     $(this).toggleClass("checked");
-    console.log(i + " activated");
+    //console.log(i + " activated");
     $(".step_indicator").eq(i).toggleClass("checked");
     instruments[active_instrument_index].steps[i] = !instruments[
       active_instrument_index
