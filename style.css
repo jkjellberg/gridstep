@@ -1,6 +1,6 @@
-{
+/**{
   touch-action: none;
-}
+}*/
 
 .topdiv {
   text-align: center;
@@ -112,6 +112,7 @@ body {
   padding-right: 20px;
   font-family: "Work Sans", sans-serif;
   height: 100%;
+  overflow: hidden;
   /**/
 }
 
