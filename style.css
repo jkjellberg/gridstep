@@ -176,18 +176,24 @@ html {
 #pattern_container {
   text-align: center;
   height:100vh;
-  padding-bottom:6%;
+  padding-bottom:12%;
 }
 
 @media only screen and (max-width: 1200px) {
   #pattern_container{
-    padding-bottom:15%;
+    padding-bottom:20%;
   }
 }
 
 @media only screen and (max-width: 1000px) {
   #pattern_container{
-    padding-bottom:18%;
+    padding-bottom:22%;
+  }
+}
+
+@media only screen and (max-width: 880px) {
+  #pattern_container{
+    padding-bottom:25%;
   }
 }
 
