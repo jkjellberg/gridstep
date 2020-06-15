@@ -174,40 +174,25 @@ html {
 
 #pattern_container {
   text-align: center;
-<<<<<<< HEAD
   height: 100vh;
-  padding-bottom: 6%;
+  padding-bottom: 14%;
 }
 
 @media only screen and (max-width: 1200px) {
   #pattern_container {
-    padding-bottom: 15%;
-=======
-  height:100vh;
-  padding-bottom:14%;
-}
-
-@media only screen and (max-width: 1200px) {
-  #pattern_container{
-    padding-bottom:24%;
->>>>>>> e5887fb818390b2867310fac3c4433a959c41888
+    padding-bottom: 24%;
   }
 }
 
 @media only screen and (max-width: 1000px) {
-<<<<<<< HEAD
   #pattern_container {
-    padding-bottom: 18%;
-=======
-  #pattern_container{
-    padding-bottom:23%;
+    padding-bottom: 23%;
   }
 }
 
 @media only screen and (max-width: 880px) {
-  #pattern_container{
-    padding-bottom:25%;
->>>>>>> e5887fb818390b2867310fac3c4433a959c41888
+  #pattern_container {
+    padding-bottom: 25%;
   }
 }
 
@@ -217,64 +202,43 @@ html {
   }
 }
 
-<<<<<<< HEAD
-@media only screen and (max-width: 600px) {
-  #pattern_container {
-    padding-bottom: 40%;
-=======
-
 @media only screen and (max-width: 650px) {
-  #pattern_container{
-    padding-bottom:52%;
-    width: 100%;
->>>>>>> e5887fb818390b2867310fac3c4433a959c41888
-  }
-
-}
-
-<<<<<<< HEAD
-@media only screen and (max-width: 800px) {
   #pattern_container {
-    padding-bottom: 0%;
-  }
-  .grid {
+    padding-bottom: 52%;
     width: 100%;
   }
 }
-.grid {
-  max-height: 100%;
-=======
+
 @media only screen and (max-width: 508px) {
-  #pattern_container{
-    padding-bottom:42%;
+  #pattern_container {
+    padding-bottom: 42%;
     height: 80%;
   }
 }
 
 @media only screen and (max-width: 470px) {
-  #pattern_container{
-    padding-bottom:50%;
+  #pattern_container {
+    padding-bottom: 50%;
     height: 80%;
   }
 }
 
 @media only screen and (max-width: 400px) {
-  #pattern_container{
-    padding-bottom:60%;
+  #pattern_container {
+    padding-bottom: 60%;
     height: 80%;
   }
 }
 
 @media only screen and (max-width: 352px) {
-  #pattern_container{
-    padding-bottom:60%;
+  #pattern_container {
+    padding-bottom: 60%;
     height: 80%;
   }
 }
 
-.grid{
-  max-height:100%;
->>>>>>> e5887fb818390b2867310fac3c4433a959c41888
+.grid {
+  max-height: 100%;
 }
 
 /* The side navigation menu */
