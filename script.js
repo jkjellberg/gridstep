@@ -213,7 +213,7 @@ document.body.addEventListener("pointerdown", (e) => {
 async function loadGrid(svg_file) {
   $("#pattern_container").empty();
   $("#pattern_container").load(
-    "https://raw.githubusercontent.com/jkjellberg/gridstep/svg-selector/patterns/" +
+    "https://raw.githubusercontent.com/jkjellberg/gridstep/master/patterns/" +
       svg_file,
     repaint_trigs
   );
@@ -222,7 +222,7 @@ function loadAndConnectGrid(svg_file) {
   //clears the old pattern and loads the new svg-pattern into the file
   $("#pattern_container").empty();
   $("#pattern_container").load(
-    "https://raw.githubusercontent.com/jkjellberg/gridstep/svg-selector/patterns/" +
+    "https://raw.githubusercontent.com/jkjellberg/gridstep/master/patterns/" +
       svg_file,
     connectGrid
   );
