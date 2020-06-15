@@ -126,6 +126,7 @@ html {
 
 .instrument-container {
   padding-top: 30px;
+
 }
 .instrument_switcher {
   width: 50px;
@@ -158,14 +159,15 @@ html {
 
 .container {
   text-align: center;
+  height:100%;
 }
 
 .borders {
-  border: 0px black solid;
+  border: 1px black solid;
 }
 
 .border {
-  border: 0px blue solid;
+  border: 1px blue solid;
 }
 
 .instrument-section {
@@ -173,7 +175,14 @@ html {
 
 #pattern_container {
   text-align: center;
-  height:20%;
+  height:100vh;
+  padding-bottom:6%;
+
+
+}
+
+.grid{
+  max-height:100%;
 }
 
 /* The side navigation menu */
@@ -273,4 +282,6 @@ html {
 
 .main-container{
   touch-action: none;
+  height:100%;
+
 }
