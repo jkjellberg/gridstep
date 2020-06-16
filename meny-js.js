@@ -1,11 +1,13 @@
 /* Open the sidenav */
 function openNav() {
   document.getElementById("mySidenav").style.width = "100%";
+  document.getElementById("mySidenav").style.opacity = "1";
 }
 
 /* Close/hide the sidenav */
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("mySidenav").style.opacity = "0";
 }
 
 // Paints a link/button for each layout in the list "grids" and connects it to a funciton
