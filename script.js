@@ -278,11 +278,11 @@ function connectGrid() {
     $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
     //e.originalEvent.preventDefault();
   });
-  $(".grid-span").on("pointerdown", function (e) {
-    $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
-    e.originalEvent.preventDefault();
-    console.log("grid2");
-  });
+  //$(".grid-span").on("pointerdown", function (e) {
+  //$(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+  //e.originalEvent.preventDefault();
+  //console.log("grid2");
+  //});
   $(document).on("pointerenter", ".st0", function () {
     let i = $(".st0").index(this);
     $(this).toggleClass("checked");
