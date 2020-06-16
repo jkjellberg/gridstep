@@ -13,6 +13,10 @@ const drumkits = ["808", "909", "LinnDrum"]; // Keeps tracks of the different so
 const sampleNames = ["kick", "snare", "clap", "lt", "ht", "ch", "oh", "cymbal"];
 let activeDrumkitIndex = 0;
 
+// keeps tracks of the index of open and closed hi hat to allow the closed hi hat to kill the open hi hat.
+const closed_hi_hat = 5;
+const open_hi_hat = 6;
+
 var sample_url =
   "https://raw.githubusercontent.com/jkjellberg/gridstep/master/samples/";
 // an array of instruments, needs to be the same as the amount of divs with class instrument_switcher
@@ -208,22 +212,18 @@ function repaint_trigs() {
 //Lets the user start the 'swipe' outside of the grid as long as they start it in the body
 document.body.addEventListener("pointerdown", (e) => {
   document.body.releasePointerCapture(e.pointerId); //
-  console.log("body");
 });
 $("#pattern_container").on("pointerdown", function (e) {
   $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
   e.originalEvent.preventDefault();
-  console.log("pattern-container");
 });
 $(".topdiv").on("pointerdown", function (e) {
   $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
   e.originalEvent.preventDefault();
-  console.log("topdiv");
 });
 $(".main-container").on("pointerdown", function (e) {
   $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
   e.originalEvent.preventDefault();
-  console.log("main-container");
 });
 
 async function ChangeGrid(svg_file) {
@@ -296,10 +296,16 @@ function repeat(time) {
   $(".step_indicator").eq(step).addClass("active_step");
 
   instruments.forEach((instrument, i) => {
-    // if the active step is cheked a note will be played.
+    // if the active step is checked a note will be played.
     if (instrument.steps[step]) {
       instrument.synth.start(time, 0);
 
+      //if closed hi hat, it should stop the open hi hat:
+      if (i == closed_hi_hat) {
+        instruments[open_hi_hat].synth.stop();
+      }
+
+      // lights up the instrument button for that step
       instr_buttons[i].classList.toggle("step");
       setTimeout(() => {
         instr_buttons[i].classList.remove("step");
