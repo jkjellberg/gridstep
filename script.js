@@ -3,23 +3,14 @@ document.documentElement.addEventListener("mousedown", () => {
   if (Tone.context.state !== "running") Tone.context.resume();
 });
 
-// variables for the stepsequencer
+// variables  and constants for the stepsequencer
 let index = 0; // keeps track on wich step the the stepsequencer are at
 let previous_step = 0; //keeps track on the previous step
-let active_instrument_index = 0; //keeps track on wich instrument that is active
-const grids = [1, 2, 3, 4];
-let activeGrid = 0;
-const drumkits = ["808", "909", "LinnDrum"];
-const sampleNames = [
-  "kick.wav",
-  "snare.wav",
-  "clap.wav",
-  "lt.wav",
-  "ht.wav",
-  "ch.wav",
-  "oh.wav",
-  "cymbal.wav",
-];
+let active_instrument_index = 0; //keeps track on wich instrument (ie sound) that is active
+const grids = [1, 2, 3, 4]; // keeps tracks on each grid-pattern that is available in /patterns
+let activeGrid = 0; // Keeps tracks on wich grid-pattern that is active at the moment
+const drumkits = ["808", "909", "LinnDrum"]; // Keeps tracks of the different soundbanks that is available, should have the same name as the folder that contains the samples.
+const sampleNames = ["kick", "snare", "clap", "lt", "ht", "ch", "oh", "cymbal"];
 let activeDrumkitIndex = 0;
 
 var sample_url =
@@ -28,56 +19,56 @@ var sample_url =
 const instruments = [
   {
     synth: new Tone.Player(
-      sample_url + drumkits[activeDrumkitIndex] + "/kick.wav"
+      sample_url + drumkits[activeDrumkitIndex] + "/" + sampleNames[0] + ".wav"
     ),
     note: "c2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
     synth: new Tone.Player(
-      sample_url + drumkits[activeDrumkitIndex] + "/snare.wav"
+      sample_url + drumkits[activeDrumkitIndex] + "/" + sampleNames[1] + ".wav"
     ),
     note: "g2",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
     synth: new Tone.Player(
-      sample_url + drumkits[activeDrumkitIndex] + "/clap.wav"
+      sample_url + drumkits[activeDrumkitIndex] + "/" + sampleNames[2] + ".wav"
     ),
     note: "c4",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
     synth: new Tone.Player(
-      sample_url + drumkits[activeDrumkitIndex] + "/lt.wav"
+      sample_url + drumkits[activeDrumkitIndex] + "/" + sampleNames[3] + ".wav"
     ),
     note: "d#4",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
     synth: new Tone.Player(
-      sample_url + drumkits[activeDrumkitIndex] + "/ht.wav"
+      sample_url + drumkits[activeDrumkitIndex] + "/" + sampleNames[4] + ".wav"
     ),
     note: "g5",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
     synth: new Tone.Player(
-      sample_url + drumkits[activeDrumkitIndex] + "/ch.wav"
+      sample_url + drumkits[activeDrumkitIndex] + "/" + sampleNames[5] + ".wav"
     ),
     note: "g5",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
     synth: new Tone.Player(
-      sample_url + drumkits[activeDrumkitIndex] + "/oh.wav"
+      sample_url + drumkits[activeDrumkitIndex] + "/" + sampleNames[6] + ".wav"
     ),
     note: "g5",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   {
     synth: new Tone.Player(
-      sample_url + drumkits[activeDrumkitIndex] + "/cymbal.wav"
+      sample_url + drumkits[activeDrumkitIndex] + "/" + sampleNames[7] + ".wav"
     ),
     note: "g5",
     steps: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -160,7 +151,9 @@ function changeNextDrumKit() {
 
 function changeDrumKit(index) {
   instruments.forEach((instrument, i) => {
-    instrument.synth.load(sample_url + drumkits[index] + "/" + sampleNames[i]);
+    instrument.synth.load(
+      sample_url + drumkits[index] + "/" + sampleNames[i] + ".wav"
+    );
   });
   activeDrumkitIndex = index;
 }
@@ -305,7 +298,7 @@ function repeat(time) {
   instruments.forEach((instrument, i) => {
     // if the active step is cheked a note will be played.
     if (instrument.steps[step]) {
-      instrument.synth.start(time, 0, "16n", 0);
+      instrument.synth.start(time, 0);
 
       instr_buttons[i].classList.toggle("step");
       setTimeout(() => {
