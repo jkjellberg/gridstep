@@ -238,6 +238,11 @@ $("svg").on("pointerdown", function (e) {
   e.originalEvent.preventDefault();
   console.log("grid");
 });
+$("#svg-pattern").on("pointerdown", function (e) {
+  $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+  e.originalEvent.preventDefault();
+  console.log("grid2");
+});
 
 async function loadGrid(svg_file) {
   $("#pattern_container").empty();
