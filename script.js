@@ -96,12 +96,16 @@ const start_stop_btn = document.getElementById("start-stop");
 
 //change-pattern-button
 $("#changePattern").click(function (e) {
+  //removes the higlight of the previous higlighted grid in the menu
   $(".layout-link").eq(activeGrid).removeClass("active");
 
+  //changes to the next grid
   activeGrid = (activeGrid + 1) % grids.length;
 
+  //Updates the link in the menu for the new grid
   $(".layout-link").eq(activeGrid).addClass("active");
-  //$("#changePattern").html("LAYOUT: " + (activeGrid + 1));
+
+  //Actually updates the grid
   loadGrid(grids[activeGrid] + ".html");
 });
 
@@ -212,12 +216,33 @@ function repaint_trigs() {
 //Lets the user start the 'swipe' outside of the grid as long as they start it in the body
 document.body.addEventListener("pointerdown", (e) => {
   document.body.releasePointerCapture(e.pointerId); //
+  console.log("body");
 });
 $("#pattern_container").on("pointerdown", function (e) {
   $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+  e.originalEvent.preventDefault();
+  console.log("pattern-container");
 });
 $(".topdiv").on("pointerdown", function (e) {
   $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+  e.originalEvent.preventDefault();
+  console.log("topdiv");
+});
+$(".main-container").on("pointerdown", function (e) {
+  $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+  e.originalEvent.preventDefault();
+  console.log("main-container");
+});
+$("svg").on("pointerdown", function (e) {
+  $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+  e.originalEvent.preventDefault();
+  console.log("grid");
+});
+
+$(".grid-span").on("pointerdown", function (e) {
+  $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+  e.originalEvent.preventDefault();
+  console.log("grid2");
 });
 
 async function loadGrid(svg_file) {
@@ -244,11 +269,20 @@ function connectGrid() {
     $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
   });
 
-  $(document).on("pointerdown", ".st0", function (e) {
+  $(".grid").on("pointerdown", function (e) {
     $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
     e.originalEvent.preventDefault();
+    console.log("grid2");
   });
-
+  $(document).on("pointerdown", ".st0", function (e) {
+    $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+    //e.originalEvent.preventDefault();
+  });
+  $(".grid-span").on("pointerdown", function (e) {
+    $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+    e.originalEvent.preventDefault();
+    console.log("grid2");
+  });
   $(document).on("pointerenter", ".st0", function () {
     let i = $(".st0").index(this);
     $(this).toggleClass("checked");
