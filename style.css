@@ -247,6 +247,7 @@ html {
   /*max-height: 80%;
   height: 80%;*/
   width:80%;
+  max-height: 70vh;
 }
 
 @media only screen and (max-width: 800px) {
