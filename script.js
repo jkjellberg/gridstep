@@ -96,12 +96,16 @@ const start_stop_btn = document.getElementById("start-stop");
 
 //change-pattern-button
 $("#changePattern").click(function (e) {
+  //removes the higlight of the previous higlighted grid in the menu
   $(".layout-link").eq(activeGrid).removeClass("active");
 
+  //changes to the next grid
   activeGrid = (activeGrid + 1) % grids.length;
 
+  //Updates the link in the menu for the new grid
   $(".layout-link").eq(activeGrid).addClass("active");
-  //$("#changePattern").html("LAYOUT: " + (activeGrid + 1));
+
+  //Actually updates the grid
   loadGrid(grids[activeGrid] + ".html");
 });
 
@@ -234,6 +238,7 @@ $("svg").on("pointerdown", function (e) {
   e.originalEvent.preventDefault();
   console.log("grid");
 });
+
 async function loadGrid(svg_file) {
   $("#pattern_container").empty();
   $("#pattern_container").load(
