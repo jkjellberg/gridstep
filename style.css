@@ -247,9 +247,13 @@ html {
   height: 80%;*/
   width: 80%;
   max-height: 70vh;
+  size: relative;
+  z-index: -1;
 }
 
 .grid-span {
+  display: inline-block;
+  width: 80%;
 }
 
 #grid2 {

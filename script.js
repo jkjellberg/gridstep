@@ -238,7 +238,8 @@ $("svg").on("pointerdown", function (e) {
   e.originalEvent.preventDefault();
   console.log("grid");
 });
-$("#svg-pattern").on("pointerdown", function (e) {
+
+$(".grid-span").on("pointerdown", function (e) {
   $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
   e.originalEvent.preventDefault();
   console.log("grid2");
@@ -268,11 +269,20 @@ function connectGrid() {
     $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
   });
 
+  $(".grid").on("pointerdown", function (e) {
+    $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+    e.originalEvent.preventDefault();
+    console.log("grid2");
+  });
   $(document).on("pointerdown", ".st0", function (e) {
     $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
     //e.originalEvent.preventDefault();
   });
-
+  $(".grid-span").on("pointerdown", function (e) {
+    $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+    e.originalEvent.preventDefault();
+    console.log("grid2");
+  });
   $(document).on("pointerenter", ".st0", function () {
     let i = $(".st0").index(this);
     $(this).toggleClass("checked");
