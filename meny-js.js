@@ -18,7 +18,7 @@ grids.forEach((grid, i) => {
     .click(function (e) {
       $(".layout-link").eq(activeGrid).removeClass("active");
       $(this).addClass("active");
-      loadGrid(grids[i] + ".html");
+      ChangeGrid(grids[i] + ".html");
       activeGrid = i;
       closeNav();
     });

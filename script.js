@@ -106,7 +106,7 @@ $("#changePattern").click(function (e) {
   $(".layout-link").eq(activeGrid).addClass("active");
 
   //Actually updates the grid
-  loadGrid(grids[activeGrid] + ".html");
+  ChangeGrid(grids[activeGrid] + ".html");
 });
 
 start_stop_btn.addEventListener("click", (e) => {
@@ -201,12 +201,11 @@ function closeFullscreen() {
 
 function repaint_trigs() {
   //repaints the trigs to match the active instruments
-  console.log("hej");
   $(".step_indicator").removeClass("checked");
   $(".st0").removeClass("checked");
   for (var j = 0; j < 16; j++) {
     if (instruments[active_instrument_index].steps[j]) {
-      console.log("step " + j + " is repainted.");
+      //console.log("step " + j + " is repainted.");
       $(".step_indicator").eq(j).addClass("checked");
       $(".st0").eq(j).addClass("checked");
     }
@@ -233,27 +232,25 @@ $(".main-container").on("pointerdown", function (e) {
   e.originalEvent.preventDefault();
   console.log("main-container");
 });
-$("svg").on("pointerdown", function (e) {
-  $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
-  e.originalEvent.preventDefault();
-  console.log("grid");
-});
 
-$(".grid-span").on("pointerdown", function (e) {
-  $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
-  e.originalEvent.preventDefault();
-  console.log("grid2");
-});
-
-async function loadGrid(svg_file) {
+async function ChangeGrid(svg_file) {
   $("#pattern_container").empty();
   $("#pattern_container").load(
     "https://raw.githubusercontent.com/jkjellberg/gridstep/master/patterns/" +
       svg_file,
-    repaint_trigs
+    repaintAndConnectSVGAfterChange
   );
 }
-function loadAndConnectGrid(svg_file) {
+
+function repaintAndConnectSVGAfterChange() {
+  repaint_trigs();
+  $(".grid").on("pointerdown", function (e) {
+    $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+    //e.originalEvent.preventDefault();
+    console.log("grid SVG");
+  });
+}
+function loadAndConnectGridFirstTime(svg_file) {
   //clears the old pattern and loads the new svg-pattern into the file
   $("#pattern_container").empty();
   $("#pattern_container").load(
@@ -269,20 +266,17 @@ function connectGrid() {
     $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
   });
 
-  $(".grid").on("pointerdown", function (e) {
-    $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
-    e.originalEvent.preventDefault();
-    console.log("grid2");
-  });
   $(document).on("pointerdown", ".st0", function (e) {
     $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
-    //e.originalEvent.preventDefault();
+    e.originalEvent.preventDefault();
   });
-  //$(".grid-span").on("pointerdown", function (e) {
-  //$(this)[0].releasePointerCapture(e.originalEvent.pointerId);
-  //e.originalEvent.preventDefault();
-  //console.log("grid2");
-  //});
+
+  $(".grid").on("pointerdown", function (e) {
+    $(this)[0].releasePointerCapture(e.originalEvent.pointerId);
+    //e.originalEvent.preventDefault();
+    console.log("grid SVG");
+  });
+
   $(document).on("pointerenter", ".st0", function () {
     let i = $(".st0").index(this);
     $(this).toggleClass("checked");
@@ -295,7 +289,7 @@ function connectGrid() {
   });
 }
 
-loadAndConnectGrid(grids[activeGrid] + ".html");
+loadAndConnectGridFirstTime(grids[activeGrid] + ".html");
 
 // Initialize the time, will call function 'repeat' each 16ths note. 120 bpm by default.
 Tone.Transport.scheduleRepeat(repeat, "16n");
