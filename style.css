@@ -249,6 +249,9 @@ html {
   max-height: 70vh;
 }
 
+.grid-span {
+}
+
 #grid2 {
   max-height: 70vh;
   max-width: 40%;
