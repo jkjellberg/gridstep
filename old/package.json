@@ -1,0 +1,23 @@
+{
+  "name": "gridstep",
+  "version": "1.0.0",
+  "description": "demo of sequencer",
+  "main": "script.js",
+  "dependencies": {
+    "tone": "^13.8.25"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkjellberg/gridstep.git"
+  },
+  "author": "Johannes Kjellberg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jkjellberg/gridstep/issues"
+  },
+  "homepage": "https://github.com/jkjellberg/gridstep#readme"
+}
